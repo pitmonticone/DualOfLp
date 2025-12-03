@@ -1,0 +1,233 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{hyperref}
+\theoremstyle{definition}
+\newtheorem{Definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{Example}[Definition]{Example}
+\theoremstyle{plain}
+\newtheorem{Theorem}[Definition]{Theorem}
+\hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan,}
+\urlstyle{same}
+
+\title{$L^{p}$-SPACES FOR $0<p<1$ }
+
+\author{Keith Conrad}
+\date{}
+
+
+%New command to display footnote whose markers will always be hidden
+\let\svthefootnote\thefootnote
+\newcommand\blfootnotetext[1]{%
+  \let\thefootnote\relax\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \let\thefootnote\svthefootnote%
+}
+
+%Overriding the \footnotetext command to hide the marker if its value is `0`
+\let\svfootnotetext\footnotetext
+\renewcommand\footnotetext[2][?]{%
+  \if\relax#1\relax%
+    \ifnum\value{footnote}=0\blfootnotetext{#2}\else\svfootnotetext{#2}\fi%
+  \else%
+    \if?#1\ifnum\value{footnote}=0\blfootnotetext{#2}\else\svfootnotetext{#2}\fi%
+    \else\svfootnotetext[#1]{#2}\fi%
+  \fi
+}
+
+\begin{document}
+\maketitle
+
+
+\section{Introduction}
+In a first course in functional analysis, a great deal of time is spent with Banach spaces, especially the interaction between such spaces and their dual spaces. Banach spaces are a special type of topological vector space, and there are important topological vector spaces that do not lie in the Banach category, such as the Schwartz spaces.
+
+The most fundamental theorem about Banach spaces is the Hahn-Banach theorem, which links the original Banach space with its dual space. What we want to illustrate here is a wide collection of topological vector spaces where the Hahn-Banach theorem has no obvious extension because the dual space is zero. The model for a topological vector space with zero dual space will be $L^{p}[0,1]$ when $0<p<1$. After proving the dual of this space is $\{0\}$, we'll see how to make the proof work for other $L^{p}$-spaces, with $0<p<1$. The argument eventually culminates in a pretty theorem from measure theory (Theorem 4.2) that can be understood at the level of a first course on that subject.
+
+\section*{2. Banach Spaces and Beyond}
+In this section, to provide some context, we recall some basic classes of vector spaces that are important in analysis.
+
+Throughout, our vector spaces are real vector spaces. All that we say would go through with minimal change to complex vector spaces.
+
+\begin{Definition}A norm on a vector space $V$ is a function $\|\cdot\|: V \rightarrow \mathbf{R}$ satisfying
+
+\begin{itemize}
+  \item $\|v\| \geq 0$, with equality if and only if $v=0$,
+  \item $\|v+w\| \leq\|v\|+\|w\|$ for all $v$ and $w$ in $V$.
+  \item $\|c v\|=|c|\|v\|$ for all scalars $c$ and $v \in V$.
+\end{itemize}
+\end{Definition}
+Given a norm on a vector space, we get a metric by $d(v, w)=\|v-w\|$.\\
+\begin{Example}On $\mathbf{R}^{n}$, we have the sup-norm $|\mathbf{x}|_{\text {sup }}=\max _{1 \leq i \leq n}\left|x_{i}\right|$ and the $L^{2}$-norm $|\mathbf{x}|_{2}=\mathbf{x} \cdot \mathbf{x}=\left(\sum_{i=1}^{n}\left|x_{i}\right|^{2}\right)^{1 / 2}$. The metric coming from the $L^{2}$-norm is the usual notion of distance on $\mathbf{R}^{n}$. The metric on $\mathbf{R}^{n}$ coming from the sup-norm has balls that are actually cubes. These two norms give rise to the same topology on $\mathbf{R}^{n}$. Actually, all norms on $\mathbf{R}^{n}$ give it the same topology. ${ }^{1}$
+\end{Example}
+\begin{Example}The space $C[0,1]$ of continuous real-valued functions on $[0,1]$ has the supnorm $|f|_{\text {sup }}=\sup _{x \in[0,1]}|f(x)|$ and the $L^{2}$-norm $|f|_{2}=\left(\int_{0}^{1}|f(x)|^{2} \mathrm{~d} x\right)^{1 / 2}$. While functions that are close in the sup-norm are close in the $L^{2}$-norm, the converse is false: a function whose graph is close to the $x$-axis except for a tall thin spike is near 0 in the $L^{2}$-norm but not in the sup-norm.
+\end{Example}
+\footnotetext{${ }^{1}$ See Theorem 2.7 in \href{https://kconrad.math.uconn.edu/blurbs/topology/finite-dim-TVS.pdf}{https://kconrad.math.uconn.edu/blurbs/topology/finite-dim-TVS.pdf}.
+}
+\begin{Definition}A Banach space is a vector space $V$ equipped with a norm $\|\cdot\|$ such that, with respect to the metric defined by $d(v, w)=\|v-w\|, V$ is complete.
+\end{Definition}
+\begin{Example}Under either norm in Example 2.2, $\mathbf{R}^{n}$ is a Banach space.
+\end{Example}
+\begin{Example}In the sup-norm, $C[0,1]$ is a Banach space (convergence in the sup-norm is exactly the concept of uniform convergence). But in the $L^{2}$-norm, $C[0,1]$ is not a Banach space. That is, $C[0,1]$ is not complete for the $L^{2}$-norm.
+\end{Example}
+\begin{Definition}For a Banach space $V$, its dual space is the space of continuous linear functionals $V \rightarrow \mathbf{R}$, and is denoted $V^{*}$.
+\end{Definition}
+Continuity is important. We do not care about arbitrary linear functionals (as in linear algebra), but only those that are continuous. One of the important features of a Banach space is that we can use continuous linear functionals to separate points.
+
+\begin{Theorem}Let $V$ be a Banach space. For each non-zero $v \in V$, there is a $\varphi \in V^{*}$ such that $\varphi(v) \neq 0$. Thus, given distinct $v$ and $w$ in $V$, there is a $\varphi \in V^{*}$ such that $\varphi(v) \neq \varphi(w)$.
+\end{Theorem}
+Theorem 2.8 is a special case of the Hahn--Banach theorem, and can be found in texts on functional analysis. Even this special case can't be proved in a constructive way (when $V$ is infinite-dimensional). Its general proof depends on the axiom of choice.\\
+\begin{Example}On $C[0,1]$, the evaluation maps $e_{a}: f \mapsto f(a)$, for $a \in \mathbf{R}$, are linear functionals. Since $|f(a)| \leq|f|_{\text {sup }}$, each $e_{a}$ is continuous for the sup-norm. If $f \neq 0$ in $C[0,1]$, there is some $a$ such that $f(a) \neq 0$, and then $e_{a}(f)=f(a) \neq 0$.
+\end{Example}
+Using the sup-norm topology on $C[0,1]$, the dual space $C[0,1]^{*}$ is the space of bounded Borel measures (or Riemann-Stieltjes integrals) on [ 0,1 ], with the evaluation maps $e_{a}$ corresponding to point masses.
+
+\begin{Definition}A topological vector space is a (real) vector space $V$ equipped with a Hausdorff topology in which addition $V \times V \rightarrow V$ and scalar multiplication $\mathbf{R} \times V \rightarrow V$ are continuous.
+\end{Definition}
+Note the Hausdorff condition is part of the definition. We won't be using non-Hausdorff spaces.
+
+\begin{Example}For $n \geq 1$, the usual topology on $\mathbf{R}^{n}$ makes it a topological vector space. Using instead the discrete topology, indicated by writing $\mathbf{R}_{d}^{n}$, does not make a topological vector space: for nonzero $\mathbf{v}_{0}$ in $\mathbf{R}_{d}^{n},\left\{\mathbf{v}_{0}\right\}$ is open and scalar multiplication $\mathbf{R} \times\left\{\mathbf{v}_{0}\right\} \rightarrow \mathbf{R}^{n}$ is continuous, so the inverse image of $\left\{\mathbf{v}_{0}\right\}$ in $\mathbf{R} \times\left\{\mathbf{v}_{0}\right\}$ is open. That is $\left\{\left(1, \mathbf{v}_{0}\right)\right\}$, and $\mathbf{R} \times\left\{\mathbf{v}_{0}\right\}$ is homeomorphic to $\mathbf{R}$, so $\{1\}$ is open in $\mathbf{R}$, which is not true. In fact, the usual topology on $\mathbf{R}^{n}$ is the only Hausdorff topology that makes it a topological vector space ${ }^{2}$ and the only topological vector space over $\mathbf{R}$ with the discrete topology is the zero space ${ }^{3}$.
+\end{Example}
+\begin{Example}Every Banach space is a topological vector space.
+\end{Example}
+\begin{Definition}A subset of a vector space is called convex if, for all $v$ and $w$ in the subset, the line segment $t v+(1-t) w$, for $0 \leq t \leq 1$, is in the subset.
+More generally, if a subset is convex and $v_{1}, \ldots, v_{m}$ are in the subset, then every weighted sum $\sum_{i=1}^{m} c_{i} v_{i}$ with $c_{i} \geq 0$ and $\sum_{i=1}^{m} c_{i}=1$ is in the subset. In particular, the subset contains the average $(1 / m) \sum_{i=1}^{m} v_{i}$.
+\end{Definition}
+
+\footnotetext{${ }^{2}$ See Theorem 2.7 in \href{https://kconrad.math.uconn.edu/blurbs/topology/finite-dim-TVS.pdf}{https://kconrad.math.uconn.edu/blurbs/topology/finite-dim-TVS.pdf}.\\
+${ }^{3}$ See \href{https://math.stackexchange.com/questions/492483}{https://math.stackexchange.com/questions/492483}.
+}
+\begin{Definition}A topological vector space is called locally convex if the convex open sets are a base for the topology: given an open set $U$ around a point, there is a convex open set $C$ containing that point such that $C \subset U$.
+\end{Definition}
+\begin{Example}Every Banach space is locally convex, since all open balls are convex. This follows from the definition of a norm.
+Since topological vector spaces are homogeneous (we can use addition to translate neighborhoods around one point to neighborhoods around other points), the locally convex condition can be checked by focusing at the origin: the open sets around 0 need to contain a basis of convex open sets.
+\end{Example}
+
+\begin{Example}The space $C(\mathbf{R})$ of continuous real-valued functions on $\mathbf{R}$ does not have the sup-norm over all of $\mathbf{R}$ as a norm: a continuous function on $\mathbf{R}$ could be unbounded. But $C(\mathbf{R})$ can be made into a locally convex topological vector space as follows. For each positive integer $n$, define a "semi-norm" $|\cdot|_{n}$ by
+
+$$
+|f|_{n}=\sup _{|x| \leq n}|f(x)|
+$$
+
+This is just like a norm, except it might assign value 0 to a non-zero function. That is, a function could vanish on $[-n, n]$ without vanishing everywhere. Of course, if we take $n$ large enough, a non-zero continuous function will have non-zero $n$-th semi-norm, so the total collection of semi-norms $|\cdot|_{n}$ as $n$ varies, rather than one particular semi-norm, lets us distinguish different functions from each other. Using these semi-norms, define a basic open set around $f \in C(\mathbf{R})$ to be the set of all functions in $C(\mathbf{R})$ that are close to $f$ in a finite number of semi-norms:
+
+$$
+U\left(f ; n_{1}, \ldots, n_{r}\right):=\left\{g \in C(\mathbf{R}):|g-f|_{n_{1}}<\varepsilon, \ldots,|g-f|_{n_{r}}<\varepsilon\right\}
+$$
+
+for some $n_{1}, \ldots, n_{r}$ in $\mathbf{Z}^{+}$and $\varepsilon>0$. These subsets of $C(\mathbf{R})$ are a basis for a topology on $C(\mathbf{R})$ that makes it a locally convex topological vector space.
+\end{Example}
+\begin{Definition}When $V$ is a topological vector space, its dual space $V^{*}$ is the space of continuous linear functionals $V \rightarrow \mathbf{R}$.
+\end{Definition}
+Theorem 2.8 generalizes to all locally convex spaces, as follows.\\
+\begin{Theorem}Let $V$ be a locally convex topological vector space. For distinct $v$ and $w$ in $V$, there is a $\varphi \in V^{*}$ such that $\varphi(v) \neq \varphi(w)$.
+\end{Theorem}
+\begin{proof} See the chapters on locally convex spaces in [3] or [10].\\
+Let's meet some topological vector spaces that are not locally convex.\\
+Example 2.19. Let $L^{1 / 2}[0,1]$ be the set of all measurable functions $f:[0,1] \rightarrow \mathbf{R}$ such that $\int_{0}^{1}|f(x)|^{1 / 2} \mathrm{~d} x<\infty$, with functions equal almost everywhere identified. (We need to make such an identification, since integration does not distinguish between two functions that differ on a set of measure 0 .)
+
+Define a metric on $L^{1 / 2}[0,1]$ by $d(f, g)=\int_{0}^{1}|f(x)-g(x)|^{1 / 2} \mathrm{~d} x$. The topology $L^{1 / 2}[0,1]$ has from this metric is not locally convex. To see why, fix an open ball around 0 :
+
+
+\begin{equation*}
+B_{R}=\left\{f \in L^{1 / 2}[0,1]: \int_{0}^{1}|f(x)|^{1 / 2} \mathrm{~d} x<R\right\} \tag{2.1}
+\end{equation*}
+
+
+where $R>0$. We will show there is no convex open set around 0 in $B_{R}$, which violates the meaning of local convexity.
+
+Suppose there were a convex open set $C$ around 0 contained in $B_{R}$, so the open $\varepsilon$-ball around 0 is contained in $C$ for some $\varepsilon>0$. For $n \geq 1$, select $n$ disjoint intervals in $[0,1]$ (they need not cover all of $[0,1]$ ). Call them $A_{1}, A_{2}, \ldots, A_{n}$. Set $f_{k}=\left(\frac{\varepsilon}{2 \mu\left(A_{k}\right)}\right)^{2} \chi_{A_{k}}$, where $\mu$ is Lebesgue measure (so $\mu\left(A_{k}\right)$ is simply the length of $A_{k}$ ). Then $\int_{0}^{1}\left|f_{k}(x)\right|^{1 / 2} \mathrm{~d} x=\varepsilon / 2$, so every $f_{k}$ is in the open $\varepsilon$-ball around 0 and thus is in $C$. Since the $f_{k}$ 's are supported on disjoint intervals in $[0,1]$, their average $g_{n}=(1 / n) \sum_{k=1}^{n} f_{k}$ satisfies
+
+$$
+\int_{0}^{1}\left|g_{n}(x)\right|^{1 / 2} \mathrm{~d} x=\frac{1}{n^{1 / 2}} \sum_{k=1}^{n} \int_{0}^{1}\left|f_{k}(x)\right|^{1 / 2} \mathrm{~d} x=\frac{1}{n^{1 / 2}} n \frac{\varepsilon}{2}=\frac{n^{1 / 2} \varepsilon}{2}
+$$
+
+We can pick $n$ large enough that $n^{1 / 2} \varepsilon / 2>R$, which makes $g_{n}$ lie outside $B_{R}$, so $g_{n} \notin C$. That contradicts the convexity of $C$.
+\end{proof}
+
+\begin{Example}For $0<p<1$, let $L^{p}[0,1]$ be the set of all functions $f:[0,1] \rightarrow \mathbf{R}$ that are measurable and satisfy $\int_{0}^{1}|f(x)|^{p} \mathrm{~d} x<\infty$, with functions equal almost everywhere identified. We define a metric on $L^{p}[0,1]$ by $d(f, g)=\int_{0}^{1}|f(x)-g(x)|^{p} \mathrm{~d} x$, and $L^{p}[0,1]$ with the topology from this metric is not locally convex by exactly the same argument as in the previous example (where $p=1 / 2$ ). Indeed, in that example replace the exponent $1 / 2$ in the definition of $f_{k}$ with $p$, and at the end you'll get $\int_{0}^{1}\left|g_{n}(x)\right|^{p} \mathrm{~d} x=n^{1-p} \varepsilon / 2$. This can be made arbitrarily large by using large enough $n$, since $1-p>0$, no open ball around 0 in $L^{p}[0,1]$ contains a convex open set around 0 .
+\end{Example}
+This method of constructing topological vector spaces that are not locally convex is due to Tychonoff [11, pp. 768-769]. He used the space $\ell^{1 / 2}=\left\{\left(x_{i}\right): \sum_{i \geq 1} \sqrt{x_{i}}<\infty\right\}$ rather than the function space $L^{1 / 2}[0,1]$.
+
+One can't push a result like Theorem 2.18 to all topological vector spaces, as the next result [4, Theorem 1] vividly illustrates.
+
+\begin{Theorem} For $0<p<1, L^{p}[0,1]^{*}=\{0\}$. That is, the only continuous linear map $L^{p}[0,1] \rightarrow \mathbf{R}$ is 0 .
+\end{Theorem}
+\begin{proof} We argue by contradiction. Assume there is $\varphi \in L^{p}[0,1]^{*}$ with $\varphi \neq 0$. Then $\varphi$ has image $\mathbf{R}$ (a nonzero linear map to a one-dimensional space is surjective), so there is some $f \in L^{p}[0,1]$ such that $|\varphi(f)| \geq 1$.
+
+Using this choice of $f$, map $[0,1]$ to $\mathbf{R}$ by
+
+$$
+s \mapsto \int_{0}^{s}|f(x)|^{p} \mathrm{~d} x
+$$
+
+This is continuous, so there is some $s$ between 0 and 1 such that
+
+
+\begin{equation*}
+\int_{0}^{s}|f(x)|^{p} \mathrm{~d} x=\frac{1}{2} \int_{0}^{1}|f(x)|^{p} \mathrm{~d} x>0 \tag{2.2}
+\end{equation*}
+
+
+Let $g_{1}=f \chi_{[0, s]}$ and $g_{2}=f \chi_{(s, 1]}$, so $f=g_{1}+g_{2}$ and $|f|^{p}=\left|g_{1}\right|^{p}+\left|g_{2}\right|^{p}$. So
+
+$$
+\int_{0}^{1}\left|g_{1}(x)\right|^{p} \mathrm{~d} x=\int_{0}^{s}|f(x)|^{p} \mathrm{~d} x=\frac{1}{2} \int_{0}^{1}|f(x)|^{p} \mathrm{~d} x
+$$
+
+hence $\int_{0}^{1}\left|g_{2}(x)\right|^{p} \mathrm{~d} x=\frac{1}{2} \int_{0}^{1}|f(x)|^{p} \mathrm{~d} x$. Since $|\varphi(f)| \geq 1,\left|\varphi\left(g_{i}\right)\right| \geq 1 / 2$ for some $i$. Let $f_{1}=2 g_{i}$, so $\left|\varphi\left(f_{1}\right)\right| \geq 1$ and $\int_{0}^{1}\left|f_{1}(x)\right|^{p} \mathrm{~d} x=2^{p} \int_{0}^{1}\left|g_{i}(x)\right|^{p} \mathrm{~d} x=2^{p-1} \int_{0}^{1}|f(x)|^{p} \mathrm{~d} x$. Note $2^{p-1}<1$ since $p<1$.
+
+Iterate this to get a sequence $\left\{f_{n}\right\}$ in $L^{p}[0,1]$ such that $\left|\varphi\left(f_{n}\right)\right| \geq 1$ and
+
+$$
+d\left(f_{n}, 0\right)=\int_{0}^{1}\left|f_{n}(x)\right|^{p} \mathrm{~d} x=\left(2^{p-1}\right)^{n} \int_{0}^{1}|f(x)|^{p} \mathrm{~d} x \rightarrow 0
+$$
+
+which contradicts the continuity of $\varphi$.
+\end{proof}
+\section{More Spaces with Dual Space $0$}
+We recall the definition of $L^{p}$-spaces for a measure space and then extend Theorem 2.21 quite generally.
+
+\begin{Definition} Let ( $X, \mathcal{M}, \mu$ ) be a measure space. For $p>0$, set
+
+$$
+L^{p}(\mu) \stackrel{\text { def }}{=}\left\{f: X \rightarrow \mathbf{R}: f \text { measurable and } \int_{X}|f|^{p} \mathrm{~d} \mu<\infty\right\}
+$$
+with functions that are equal almost everywhere being identified with one another.\\
+The metric used on $L^{p}(\mu)$ is
+
+$$
+d(f, g)= \begin{cases}\left(\int_{X}|f-g|^{p} \mathrm{~d} \mu\right)^{1 / p}, & \text { if } p \geq 1 \\ \int_{X}|f-g|^{p} \mathrm{~d} \mu, & \text { if } 0<p<1\end{cases}
+$$
+\end{Definition}
+The reason for these choices, and a discussion of common properties of $L^{p}(\mu)$ for all $p>0$, is discussed in the appendix.
+
+The spaces $L^{p}(\mu)$ for $p \geq 1$ have their metric coming from a norm, so they are locally convex. We saw in Examples 2.19 and 2.20 that, for $0<p<1, L^{p}[0,1]$ is not locally convex. For a measure space ( $X, \mathcal{M}, \mu$ ) and $0<p<1$, is $L^{p}(\mu)$ ever locally convex?
+
+\begin{Theorem}For $0<p<1, L^{p}(\mu)$ is locally convex if and only if the measure $\mu$ assumes finitely many values.
+\end{Theorem}
+\begin{proof} If $\mu$ takes finitely many values, then $X$ is the disjoint union of finitely many atoms, say $B_{1}, \ldots, B_{m}$. A measurable function is constant almost everywhere on each atom, so $L^{p}(\mu)$ is topologically just Euclidean space (of dimension equal to the number of atoms of finite measure), which is locally convex.
+
+Now assume $\mu$ takes infinitely many values. We will extend the idea from Example 2.19 to show $L^{p}(\mu)$ is not locally convex.
+
+Since $\mu$ has infinitely many values, there is a sequence of subsets $Y_{i} \subset X$ such that
+
+$$
+0<\mu\left(Y_{1}\right)<\mu\left(Y_{2}\right)<\ldots
+$$
+
+From the sets $Y_{i}$, we can construct recursively a sequences of disjoint sets $A_{i}$ such that $\mu\left(A_{i}\right)>0$.
+
+Fix $\varepsilon>0$. Let $f_{k}=\left(\varepsilon / \mu\left(A_{k}\right)\right)^{1 / p} \chi_{A_{k}}$, so $\int_{X}\left|f_{k}\right|^{p} \mathrm{~d} \mu=\varepsilon$. If $L^{p}(\mu)$ is locally convex, then every open set around 0 contains a convex open set around 0 , which in turn contains some $\varepsilon$-ball (and thus every $f_{k}$ ). We will show an average of enough $f_{k}$ 's is arbitrarily far from 0 in the metric on $L^{p}(\mu)$, and that will contradict local convexity.
+
+Let $g_{n}=\frac{1}{n} \sum_{k=1}^{n} f_{k}$. Since the $f_{k}$ 's are supported on disjoint sets, $\int_{X}\left|g_{n}\right|^{p} \mathrm{~d} \mu= \frac{1}{n^{p}} \sum_{k=1}^{n} \varepsilon=\varepsilon n^{1-p}$. Since $p<1, \varepsilon n^{1-p}$ becomes arbitrarily large as $n \rightarrow \infty$. Thus, $L^{p}(\mu)$ is not locally convex.
+\end{proof}
+
+\end{document}
