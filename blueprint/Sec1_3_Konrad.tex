@@ -88,7 +88,7 @@ Continuity is important. We do not care about arbitrary linear functionals (as i
 Theorem~\ref{thm:the28} is a special case of the Hahn--Banach theorem, and can be found in texts on functional analysis. Even this special case can't be proved in a constructive way (when $V$ is infinite-dimensional). Its general proof depends on the axiom of choice.
 \begin{Example}On $C[0,1]$, the evaluation maps $e_{a}: f \mapsto f(a)$, for $a \in \mathbf{R}$, are linear functionals. Since $|f(a)| \leq|f|_{\text {sup }}$, each $e_{a}$ is continuous for the sup-norm. If $f \neq 0$ in $C[0,1]$, there is some $a$ such that $f(a) \neq 0$, and then $e_{a}(f)=f(a) \neq 0$.
 \end{Example}
-Using the sup-norm topology on $C[0,1]$, the dual space $C[0,1]^{*}$ is the space of bounded Borel measures (or Riemann-Stieltjes integrals) on [ 0,1 ], with the evaluation maps $e_{a}$ corresponding to point masses.
+Using the sup-norm topology on $C[0,1]$, the dual space $C[0,1]^{*}$ is the space of bounded Borel measures (or Riemann--Stieltjes integrals) on $[0,1]$, with the evaluation maps $e_{a}$ corresponding to point masses.
 
 \begin{Definition}A topological vector space is a (real) vector space $V$ equipped with a Hausdorff topology in which addition $V \times V \rightarrow V$ and scalar multiplication $\mathbf{R} \times V \rightarrow V$ are continuous.
 \end{Definition}
@@ -122,62 +122,51 @@ for some $n_{1}, \ldots, n_{r}$ in $\mathbf{Z}^{+}$and $\varepsilon>0$. These su
 \end{Example}
 \begin{Definition}When $V$ is a topological vector space, its dual space $V^{*}$ is the space of continuous linear functionals $V \rightarrow \mathbf{R}$.
 \end{Definition}
-Theorem~\ref{thm:the28} generalizes to all locally convex spaces, as follows.\\
+Theorem~\ref{thm:the28} generalizes to all locally convex spaces, as follows.
 \begin{Theorem}Let $V$ be a locally convex topological vector space. For distinct $v$ and $w$ in $V$, there is a $\varphi \in V^{*}$ such that $\varphi(v) \neq \varphi(w)$.
 \end{Theorem}
-\begin{proof} See the chapters on locally convex spaces in [3] or [10].\\
-Let's meet some topological vector spaces that are not locally convex.\\
-Example 2.19. Let $L^{1 / 2}[0,1]$ be the set of all measurable functions $f:[0,1] \rightarrow \mathbf{R}$ such that $\int_{0}^{1}|f(x)|^{1 / 2} \mathrm{~d} x<\infty$, with functions equal almost everywhere identified. (We need to make such an identification, since integration does not distinguish between two functions that differ on a set of measure 0 .)
+\begin{proof} See the chapters on locally convex spaces in~\cite{Con90} or~\cite{ReeBar80}.
+\end{proof}
+Let's meet some topological vector spaces that are not locally convex.
+\begin{Example} Let $L^{1 / 2}[0,1]$ be the set of all measurable functions $f\colon [0,1] \rightarrow \mathbf{R}$ such that $\int_{0}^{1}|f(x)|^{1 / 2} \mathrm{~d} x<\infty$, with functions equal almost everywhere identified. (We need to make such an identification, since integration does not distinguish between two functions that differ on a set of measure 0 .)
 
 Define a metric on $L^{1 / 2}[0,1]$ by $d(f, g)=\int_{0}^{1}|f(x)-g(x)|^{1 / 2} \mathrm{~d} x$. The topology $L^{1 / 2}[0,1]$ has from this metric is not locally convex. To see why, fix an open ball around 0 :
-
-
 \begin{equation*}
 B_{R}=\left\{f \in L^{1 / 2}[0,1]: \int_{0}^{1}|f(x)|^{1 / 2} \mathrm{~d} x<R\right\} \tag{2.1}
 \end{equation*}
-
-
 where $R>0$. We will show there is no convex open set around 0 in $B_{R}$, which violates the meaning of local convexity.
 
-Suppose there were a convex open set $C$ around 0 contained in $B_{R}$, so the open $\varepsilon$-ball around 0 is contained in $C$ for some $\varepsilon>0$. For $n \geq 1$, select $n$ disjoint intervals in $[0,1]$ (they need not cover all of $[0,1]$ ). Call them $A_{1}, A_{2}, \ldots, A_{n}$. Set $f_{k}=\left(\frac{\varepsilon}{2 \mu\left(A_{k}\right)}\right)^{2} \chi_{A_{k}}$, where $\mu$ is Lebesgue measure (so $\mu\left(A_{k}\right)$ is simply the length of $A_{k}$ ). Then $\int_{0}^{1}\left|f_{k}(x)\right|^{1 / 2} \mathrm{~d} x=\varepsilon / 2$, so every $f_{k}$ is in the open $\varepsilon$-ball around 0 and thus is in $C$. Since the $f_{k}$ 's are supported on disjoint intervals in $[0,1]$, their average $g_{n}=(1 / n) \sum_{k=1}^{n} f_{k}$ satisfies
-
-$$
+Suppose there were a convex open set $C$ around 0 contained in $B_{R}$, so the open $\varepsilon$-ball around 0 is contained in $C$ for some $\varepsilon>0$. For $n \geq 1$, select $n$ disjoint intervals in $[0,1]$ (they need not cover all of $[0,1]$). Call them $A_{1}, A_{2}, \ldots, A_{n}$. Set $f_{k}=\left(\frac{\varepsilon}{2 \mu\left(A_{k}\right)}\right)^{2} \chi_{A_{k}}$, where $\mu$ is Lebesgue measure (so $\mu\left(A_{k}\right)$ is simply the length of $A_{k}$ ). Then $\int_{0}^{1}\left|f_{k}(x)\right|^{1 / 2} \mathrm{~d} x=\varepsilon / 2$, so every $f_{k}$ is in the open $\varepsilon$-ball around 0 and thus is in $C$. Since the $f_{k}$ 's are supported on disjoint intervals in $[0,1]$, their average $g_{n}=(1 / n) \sum_{k=1}^{n} f_{k}$ satisfies
+\[
 \int_{0}^{1}\left|g_{n}(x)\right|^{1 / 2} \mathrm{~d} x=\frac{1}{n^{1 / 2}} \sum_{k=1}^{n} \int_{0}^{1}\left|f_{k}(x)\right|^{1 / 2} \mathrm{~d} x=\frac{1}{n^{1 / 2}} n \frac{\varepsilon}{2}=\frac{n^{1 / 2} \varepsilon}{2}
-$$
-
+\]
 We can pick $n$ large enough that $n^{1 / 2} \varepsilon / 2>R$, which makes $g_{n}$ lie outside $B_{R}$, so $g_{n} \notin C$. That contradicts the convexity of $C$.
-\end{proof}
-
-\begin{Example}For $0<p<1$, let $L^{p}[0,1]$ be the set of all functions $f:[0,1] \rightarrow \mathbf{R}$ that are measurable and satisfy $\int_{0}^{1}|f(x)|^{p} \mathrm{~d} x<\infty$, with functions equal almost everywhere identified. We define a metric on $L^{p}[0,1]$ by $d(f, g)=\int_{0}^{1}|f(x)-g(x)|^{p} \mathrm{~d} x$, and $L^{p}[0,1]$ with the topology from this metric is not locally convex by exactly the same argument as in the previous example (where $p=1 / 2$ ). Indeed, in that example replace the exponent $1 / 2$ in the definition of $f_{k}$ with $p$, and at the end you'll get $\int_{0}^{1}\left|g_{n}(x)\right|^{p} \mathrm{~d} x=n^{1-p} \varepsilon / 2$. This can be made arbitrarily large by using large enough $n$, since $1-p>0$, no open ball around 0 in $L^{p}[0,1]$ contains a convex open set around 0 .
 \end{Example}
-This method of constructing topological vector spaces that are not locally convex is due to Tychonoff [11, pp. 768-769]. He used the space $\ell^{1 / 2}=\left\{\left(x_{i}\right): \sum_{i \geq 1} \sqrt{x_{i}}<\infty\right\}$ rather than the function space $L^{1 / 2}[0,1]$.
+
+\begin{Example} For $0<p<1$, let $L^{p}[0,1]$ be the set of all functions $f:[0,1] \rightarrow \mathbf{R}$ that are measurable and satisfy $\int_{0}^{1}|f(x)|^{p} \mathrm{~d} x<\infty$, with functions equal almost everywhere identified. We define a metric on $L^{p}[0,1]$ by $d(f, g)=\int_{0}^{1}|f(x)-g(x)|^{p} \mathrm{~d} x$, and $L^{p}[0,1]$ with the topology from this metric is not locally convex by exactly the same argument as in the previous example (where $p=1 / 2$ ). Indeed, in that example replace the exponent $1 / 2$ in the definition of $f_{k}$ with $p$, and at the end you'll get $\int_{0}^{1}\left|g_{n}(x)\right|^{p} \mathrm{~d} x=n^{1-p} \varepsilon / 2$. This can be made arbitrarily large by using large enough $n$, since $1-p>0$, no open ball around 0 in $L^{p}[0,1]$ contains a convex open set around $0$.
+\end{Example}
+
+This method of constructing topological vector spaces that are not locally convex is due to Tychonoff~\cite[pp.~768--769]{Tyc35}. He used the space $\ell^{1 / 2}=\left\{\left(x_{i}\right): \sum_{i \geq 1} \sqrt{x_{i}}<\infty\right\}$ rather than the function space $L^{1 / 2}[0,1]$.
 
 One can't push a result like Theorem 2.18 to all topological vector spaces, as the next result [4, Theorem 1] vividly illustrates.
 
-\begin{Theorem} For $0<p<1, L^{p}[0,1]^{*}=\{0\}$. That is, the only continuous linear map $L^{p}[0,1] \rightarrow \mathbf{R}$ is 0 .
+\begin{Theorem}\label{thm:dual_Lp_zero} For $0<p<1, L^{p}[0,1]^{*}=\{0\}$. That is, the only continuous linear map $L^{p}[0,1] \rightarrow \mathbf{R}$ is 0 .
 \end{Theorem}
 \begin{proof} We argue by contradiction. Assume there is $\varphi \in L^{p}[0,1]^{*}$ with $\varphi \neq 0$. Then $\varphi$ has image $\mathbf{R}$ (a nonzero linear map to a one-dimensional space is surjective), so there is some $f \in L^{p}[0,1]$ such that $|\varphi(f)| \geq 1$.
 
 Using this choice of $f$, map $[0,1]$ to $\mathbf{R}$ by
-
-$$
+\[
 s \mapsto \int_{0}^{s}|f(x)|^{p} \mathrm{~d} x
-$$
+\]
 
 This is continuous, so there is some $s$ between 0 and 1 such that
-
-
 \begin{equation*}
 \int_{0}^{s}|f(x)|^{p} \mathrm{~d} x=\frac{1}{2} \int_{0}^{1}|f(x)|^{p} \mathrm{~d} x>0 \tag{2.2}
 \end{equation*}
-
-
 Let $g_{1}=f \chi_{[0, s]}$ and $g_{2}=f \chi_{(s, 1]}$, so $f=g_{1}+g_{2}$ and $|f|^{p}=\left|g_{1}\right|^{p}+\left|g_{2}\right|^{p}$. So
-
-$$
+\[
 \int_{0}^{1}\left|g_{1}(x)\right|^{p} \mathrm{~d} x=\int_{0}^{s}|f(x)|^{p} \mathrm{~d} x=\frac{1}{2} \int_{0}^{1}|f(x)|^{p} \mathrm{~d} x
-$$
-
+\]
 hence $\int_{0}^{1}\left|g_{2}(x)\right|^{p} \mathrm{~d} x=\frac{1}{2} \int_{0}^{1}|f(x)|^{p} \mathrm{~d} x$. Since $|\varphi(f)| \geq 1,\left|\varphi\left(g_{i}\right)\right| \geq 1 / 2$ for some $i$. Let $f_{1}=2 g_{i}$, so $\left|\varphi\left(f_{1}\right)\right| \geq 1$ and $\int_{0}^{1}\left|f_{1}(x)\right|^{p} \mathrm{~d} x=2^{p} \int_{0}^{1}\left|g_{i}(x)\right|^{p} \mathrm{~d} x=2^{p-1} \int_{0}^{1}|f(x)|^{p} \mathrm{~d} x$. Note $2^{p-1}<1$ since $p<1$.
 
 Iterate this to get a sequence $\left\{f_{n}\right\}$ in $L^{p}[0,1]$ such that $\left|\varphi\left(f_{n}\right)\right| \geq 1$ and
@@ -187,40 +176,43 @@ d\left(f_{n}, 0\right)=\int_{0}^{1}\left|f_{n}(x)\right|^{p} \mathrm{~d} x=\left
 which contradicts the continuity of $\varphi$.
 \end{proof}
 
-\section{More Spaces with Dual Space $0$}
-We recall the definition of $L^{p}$-spaces for a measure space and then extend Theorem 2.21 quite generally.
+\section{Other Spaces with Trivial Dual}
+We recall the definition of $L^{p}$-spaces for a measure space and then extend Theorem~\ref{thm:dual_Lp_zero} quite generally.
 
-\begin{Definition} Let ( $X, \mathcal{M}, \mu$ ) be a measure space. For $p>0$, set
+\begin{Definition} Let $(X, \mathcal{M}, \mu)$ be a measure space. For $0<p$, set
 \[
-L^{p}(\mu) \stackrel{\text { def }}{=}\left\{f: X \rightarrow \mathbf{R}: f \text { measurable and } \int_{X}|f|^{p} \mathrm{~d} \mu<\infty\right\}
+L^{p}(\mu) =\left\{f\colon X \rightarrow \mathbb{R} \text{ such that }f\text{ is measurable and } \int_{X}|f|^{p} \mathrm{~d} \mu<\infty\right\}\big\slash\sim
 \]
-with functions that are equal almost everywhere being identified with one another.\\
-The metric used on $L^{p}(\mu)$ is
-\[
-d(f, g)= \begin{cases}\left(\int_{X}|f-g|^{p} \mathrm{~d} \mu\right)^{1 / p}, & \text { if } p \geq 1 \\ \int_{X}|f-g|^{p} \mathrm{~d} \mu, & \text { if } 0<p<1\end{cases}
-\]
+where functions that are equal almost everywhere are identified with one another.
 \end{Definition}
-The reason for these choices, and a discussion of common properties of $L^{p}(\mu)$ for all $p>0$, is discussed in the appendix.
 
-The spaces $L^{p}(\mu)$ for $p \geq 1$ have their metric coming from a norm, so they are locally convex. We saw in Examples 2.19 and 2.20 that, for $0<p<1, L^{p}[0,1]$ is not locally convex. For a measure space ( $X, \mathcal{M}, \mu$ ) and $0<p<1$, is $L^{p}(\mu)$ ever locally convex?
+The spaces $L^{p}(\mu)$ are actually metric spaces, with metric
+\[
+d(f, g)= \begin{cases}
+    \left(\int_{X}|f-g|^{p} \mathrm{~d} \mu\right)^{1 / p}, & \text { if } p \geq 1 \\ \int_{X}|f-g|^{p} \mathrm{~d} \mu, & \text { if } 0<p<1
+    \end{cases}
+\]
 
-\begin{Theorem}For $0<p<1, L^{p}(\mu)$ is locally convex if and only if the measure $\mu$ assumes finitely many values.
+The spaces $L^{p}(\mu)$ for $p \geq 1$ have their metric coming from a norm, so they are locally convex. We saw in Examples 2.19 and 2.20 that, for $0<p<1, L^{p}[0,1]$ is not locally convex. For a measure space $(X, \mathcal{M}, \mu)$ and $0<p<1$, is $L^{p}(\mu)$ ever locally convex?
+
+\begin{Theorem} For $0<p<1, L^{p}(\mu)$ is locally convex if and only if the measure $\mu$ assumes finitely many values.
 \end{Theorem}
 \begin{proof} If $\mu$ takes finitely many values, then $X$ is the disjoint union of finitely many atoms, say $B_{1}, \ldots, B_{m}$. A measurable function is constant almost everywhere on each atom, so $L^{p}(\mu)$ is topologically just Euclidean space (of dimension equal to the number of atoms of finite measure), which is locally convex.
 
 Now assume $\mu$ takes infinitely many values. We will extend the idea from Example 2.19 to show $L^{p}(\mu)$ is not locally convex.
 
 Since $\mu$ has infinitely many values, there is a sequence of subsets $Y_{i} \subset X$ such that
-
-$$
+\[
 0<\mu\left(Y_{1}\right)<\mu\left(Y_{2}\right)<\ldots
-$$
-
+\]
 From the sets $Y_{i}$, we can construct recursively a sequences of disjoint sets $A_{i}$ such that $\mu\left(A_{i}\right)>0$.
 
 Fix $\varepsilon>0$. Let $f_{k}=\left(\varepsilon / \mu\left(A_{k}\right)\right)^{1 / p} \chi_{A_{k}}$, so $\int_{X}\left|f_{k}\right|^{p} \mathrm{~d} \mu=\varepsilon$. If $L^{p}(\mu)$ is locally convex, then every open set around 0 contains a convex open set around 0 , which in turn contains some $\varepsilon$-ball (and thus every $f_{k}$ ). We will show an average of enough $f_{k}$ 's is arbitrarily far from 0 in the metric on $L^{p}(\mu)$, and that will contradict local convexity.
 
 Let $g_{n}=\frac{1}{n} \sum_{k=1}^{n} f_{k}$. Since the $f_{k}$ 's are supported on disjoint sets, $\int_{X}\left|g_{n}\right|^{p} \mathrm{~d} \mu= \frac{1}{n^{p}} \sum_{k=1}^{n} \varepsilon=\varepsilon n^{1-p}$. Since $p<1, \varepsilon n^{1-p}$ becomes arbitrarily large as $n \rightarrow \infty$. Thus, $L^{p}(\mu)$ is not locally convex.
 \end{proof}
+
+\bibliographystyle{amsalpha}
+\bibliography{biblio_Sec1_3_Konrad}
 
 \end{document}
