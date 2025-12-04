@@ -34,6 +34,7 @@
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
+<<<<<<< HEAD
 *.pdf 
 *.aux 
 *.log 
@@ -43,3 +44,7 @@
 *.out 
 *.toc 
 *.nav
+=======
+## PDF
+*.pdf
+>>>>>>> 05cd3daa088acd1b4ea80c9b177a8f52a1d2c056
