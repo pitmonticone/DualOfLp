@@ -19,7 +19,7 @@
 \hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan,}
 \urlstyle{same}
 
-\title{$L^{p}$-SPACES FOR $0<p<1$ }
+\title{$L^{p}$-spaces for $0<p<1$ }
 
 \author{Keith Conrad}
 \date{}
@@ -53,7 +53,7 @@ In a first course in functional analysis, a great deal of time is spent with Ban
 
 The most fundamental theorem about Banach spaces is the Hahn-Banach theorem, which links the original Banach space with its dual space. What we want to illustrate here is a wide collection of topological vector spaces where the Hahn-Banach theorem has no obvious extension because the dual space is zero. The model for a topological vector space with zero dual space will be $L^{p}[0,1]$ when $0<p<1$. After proving the dual of this space is $\{0\}$, we'll see how to make the proof work for other $L^{p}$-spaces, with $0<p<1$. The argument eventually culminates in a pretty theorem from measure theory (Theorem 4.2) that can be understood at the level of a first course on that subject.
 
-\section*{2. Banach Spaces and Beyond}
+\section{Banach Spaces and Beyond}
 In this section, to provide some context, we recall some basic classes of vector spaces that are important in analysis.
 
 Throughout, our vector spaces are real vector spaces. All that we say would go through with minimal change to complex vector spaces.
@@ -69,10 +69,10 @@ Throughout, our vector spaces are real vector spaces. All that we say would go t
 Given a norm on a vector space, we get a metric by $d(v, w)=\|v-w\|$.\\
 \begin{Example}On $\mathbf{R}^{n}$, we have the sup-norm $|\mathbf{x}|_{\text {sup }}=\max _{1 \leq i \leq n}\left|x_{i}\right|$ and the $L^{2}$-norm $|\mathbf{x}|_{2}=\mathbf{x} \cdot \mathbf{x}=\left(\sum_{i=1}^{n}\left|x_{i}\right|^{2}\right)^{1 / 2}$. The metric coming from the $L^{2}$-norm is the usual notion of distance on $\mathbf{R}^{n}$. The metric on $\mathbf{R}^{n}$ coming from the sup-norm has balls that are actually cubes. These two norms give rise to the same topology on $\mathbf{R}^{n}$. Actually, all norms on $\mathbf{R}^{n}$ give it the same topology. ${ }^{1}$
 \end{Example}
+
 \begin{Example}The space $C[0,1]$ of continuous real-valued functions on $[0,1]$ has the supnorm $|f|_{\text {sup }}=\sup _{x \in[0,1]}|f(x)|$ and the $L^{2}$-norm $|f|_{2}=\left(\int_{0}^{1}|f(x)|^{2} \mathrm{~d} x\right)^{1 / 2}$. While functions that are close in the sup-norm are close in the $L^{2}$-norm, the converse is false: a function whose graph is close to the $x$-axis except for a tall thin spike is near 0 in the $L^{2}$-norm but not in the sup-norm.
+\footnote{See Theorem 2.7 in \href{https://kconrad.math.uconn.edu/blurbs/topology/finite-dim-TVS.pdf}{https://kconrad.math.uconn.edu/blurbs/topology/finite-dim-TVS.pdf}.}
 \end{Example}
-\footnotetext{${ }^{1}$ See Theorem 2.7 in \href{https://kconrad.math.uconn.edu/blurbs/topology/finite-dim-TVS.pdf}{https://kconrad.math.uconn.edu/blurbs/topology/finite-dim-TVS.pdf}.
-}
 \begin{Definition}A Banach space is a vector space $V$ equipped with a norm $\|\cdot\|$ such that, with respect to the metric defined by $d(v, w)=\|v-w\|, V$ is complete.
 \end{Definition}
 \begin{Example}Under either norm in Example 2.2, $\mathbf{R}^{n}$ is a Banach space.
@@ -83,9 +83,9 @@ Given a norm on a vector space, we get a metric by $d(v, w)=\|v-w\|$.\\
 \end{Definition}
 Continuity is important. We do not care about arbitrary linear functionals (as in linear algebra), but only those that are continuous. One of the important features of a Banach space is that we can use continuous linear functionals to separate points.
 
-\begin{Theorem}Let $V$ be a Banach space. For each non-zero $v \in V$, there is a $\varphi \in V^{*}$ such that $\varphi(v) \neq 0$. Thus, given distinct $v$ and $w$ in $V$, there is a $\varphi \in V^{*}$ such that $\varphi(v) \neq \varphi(w)$.
+\begin{Theorem}\label{thm:the28} Let $V$ be a Banach space. For each non-zero $v \in V$, there is a $\varphi \in V^{*}$ such that $\varphi(v) \neq 0$. Thus, given distinct $v$ and $w$ in $V$, there is a $\varphi \in V^{*}$ such that $\varphi(v) \neq \varphi(w)$.
 \end{Theorem}
-Theorem 2.8 is a special case of the Hahn--Banach theorem, and can be found in texts on functional analysis. Even this special case can't be proved in a constructive way (when $V$ is infinite-dimensional). Its general proof depends on the axiom of choice.\\
+Theorem~\ref{thm:the28} is a special case of the Hahn--Banach theorem, and can be found in texts on functional analysis. Even this special case can't be proved in a constructive way (when $V$ is infinite-dimensional). Its general proof depends on the axiom of choice.
 \begin{Example}On $C[0,1]$, the evaluation maps $e_{a}: f \mapsto f(a)$, for $a \in \mathbf{R}$, are linear functionals. Since $|f(a)| \leq|f|_{\text {sup }}$, each $e_{a}$ is continuous for the sup-norm. If $f \neq 0$ in $C[0,1]$, there is some $a$ such that $f(a) \neq 0$, and then $e_{a}(f)=f(a) \neq 0$.
 \end{Example}
 Using the sup-norm topology on $C[0,1]$, the dual space $C[0,1]^{*}$ is the space of bounded Borel measures (or Riemann-Stieltjes integrals) on [ 0,1 ], with the evaluation maps $e_{a}$ corresponding to point masses.
@@ -94,17 +94,15 @@ Using the sup-norm topology on $C[0,1]$, the dual space $C[0,1]^{*}$ is the spac
 \end{Definition}
 Note the Hausdorff condition is part of the definition. We won't be using non-Hausdorff spaces.
 
-\begin{Example}For $n \geq 1$, the usual topology on $\mathbf{R}^{n}$ makes it a topological vector space. Using instead the discrete topology, indicated by writing $\mathbf{R}_{d}^{n}$, does not make a topological vector space: for nonzero $\mathbf{v}_{0}$ in $\mathbf{R}_{d}^{n},\left\{\mathbf{v}_{0}\right\}$ is open and scalar multiplication $\mathbf{R} \times\left\{\mathbf{v}_{0}\right\} \rightarrow \mathbf{R}^{n}$ is continuous, so the inverse image of $\left\{\mathbf{v}_{0}\right\}$ in $\mathbf{R} \times\left\{\mathbf{v}_{0}\right\}$ is open. That is $\left\{\left(1, \mathbf{v}_{0}\right)\right\}$, and $\mathbf{R} \times\left\{\mathbf{v}_{0}\right\}$ is homeomorphic to $\mathbf{R}$, so $\{1\}$ is open in $\mathbf{R}$, which is not true. In fact, the usual topology on $\mathbf{R}^{n}$ is the only Hausdorff topology that makes it a topological vector space ${ }^{2}$ and the only topological vector space over $\mathbf{R}$ with the discrete topology is the zero space ${ }^{3}$.
+\begin{Example}For $n \geq 1$, the usual topology on $\mathbf{R}^{n}$ makes it a topological vector space. Using instead the discrete topology, indicated by writing $\mathbf{R}_{d}^{n}$, does not make a topological vector space: for nonzero $\mathbf{v}_{0}$ in $\mathbf{R}_{d}^{n},\left\{\mathbf{v}_{0}\right\}$ is open and scalar multiplication $\mathbf{R} \times\left\{\mathbf{v}_{0}\right\} \rightarrow \mathbf{R}^{n}$ is continuous, so the inverse image of $\left\{\mathbf{v}_{0}\right\}$ in $\mathbf{R} \times\left\{\mathbf{v}_{0}\right\}$ is open. That is $\left\{\left(1, \mathbf{v}_{0}\right)\right\}$, and $\mathbf{R} \times\left\{\mathbf{v}_{0}\right\}$ is homeomorphic to $\mathbf{R}$, so $\{1\}$ is open in $\mathbf{R}$, which is not true. In fact, the usual topology on $\mathbf{R}^{n}$ is the only Hausdorff topology that makes it a topological vector space\footnote{See Theorem 2.7 in \href{https://kconrad.math.uconn.edu/blurbs/topology/finite-dim-TVS.pdf}{https://kconrad.math.uconn.edu/blurbs/topology/finite-dim-TVS.pdf}.}
+		 and the only topological vector space over $\mathbf{R}$ with the discrete topology is the zero space\footnote{${ }^{3}$ See \href{https://math.stackexchange.com/questions/492483}{https://math.stackexchange.com/questions/492483}.
+}.
 \end{Example}
 \begin{Example}Every Banach space is a topological vector space.
 \end{Example}
 \begin{Definition}A subset of a vector space is called convex if, for all $v$ and $w$ in the subset, the line segment $t v+(1-t) w$, for $0 \leq t \leq 1$, is in the subset.
 More generally, if a subset is convex and $v_{1}, \ldots, v_{m}$ are in the subset, then every weighted sum $\sum_{i=1}^{m} c_{i} v_{i}$ with $c_{i} \geq 0$ and $\sum_{i=1}^{m} c_{i}=1$ is in the subset. In particular, the subset contains the average $(1 / m) \sum_{i=1}^{m} v_{i}$.
 \end{Definition}
-
-\footnotetext{${ }^{2}$ See Theorem 2.7 in \href{https://kconrad.math.uconn.edu/blurbs/topology/finite-dim-TVS.pdf}{https://kconrad.math.uconn.edu/blurbs/topology/finite-dim-TVS.pdf}.\\
-${ }^{3}$ See \href{https://math.stackexchange.com/questions/492483}{https://math.stackexchange.com/questions/492483}.
-}
 \begin{Definition}A topological vector space is called locally convex if the convex open sets are a base for the topology: given an open set $U$ around a point, there is a convex open set $C$ containing that point such that $C \subset U$.
 \end{Definition}
 \begin{Example}Every Banach space is locally convex, since all open balls are convex. This follows from the definition of a norm.
@@ -112,22 +110,19 @@ Since topological vector spaces are homogeneous (we can use addition to translat
 \end{Example}
 
 \begin{Example}The space $C(\mathbf{R})$ of continuous real-valued functions on $\mathbf{R}$ does not have the sup-norm over all of $\mathbf{R}$ as a norm: a continuous function on $\mathbf{R}$ could be unbounded. But $C(\mathbf{R})$ can be made into a locally convex topological vector space as follows. For each positive integer $n$, define a "semi-norm" $|\cdot|_{n}$ by
-
-$$
+\[
 |f|_{n}=\sup _{|x| \leq n}|f(x)|
-$$
+\]
 
-This is just like a norm, except it might assign value 0 to a non-zero function. That is, a function could vanish on $[-n, n]$ without vanishing everywhere. Of course, if we take $n$ large enough, a non-zero continuous function will have non-zero $n$-th semi-norm, so the total collection of semi-norms $|\cdot|_{n}$ as $n$ varies, rather than one particular semi-norm, lets us distinguish different functions from each other. Using these semi-norms, define a basic open set around $f \in C(\mathbf{R})$ to be the set of all functions in $C(\mathbf{R})$ that are close to $f$ in a finite number of semi-norms:
-
-$$
+This is just like a norm, except it might assign value $0$ to a non-zero function. That is, a function could vanish on $[-n, n]$ without vanishing everywhere. Of course, if we take $n$ large enough, a non-zero continuous function will have non-zero $n$-th semi-norm, so the total collection of semi-norms $|\cdot|_{n}$ as $n$ varies, rather than one particular semi-norm, lets us distinguish different functions from each other. Using these semi-norms, define a basic open set around $f \in C(\mathbf{R})$ to be the set of all functions in $C(\mathbf{R})$ that are close to $f$ in a finite number of semi-norms:
+\[
 U\left(f ; n_{1}, \ldots, n_{r}\right):=\left\{g \in C(\mathbf{R}):|g-f|_{n_{1}}<\varepsilon, \ldots,|g-f|_{n_{r}}<\varepsilon\right\}
-$$
-
+\]
 for some $n_{1}, \ldots, n_{r}$ in $\mathbf{Z}^{+}$and $\varepsilon>0$. These subsets of $C(\mathbf{R})$ are a basis for a topology on $C(\mathbf{R})$ that makes it a locally convex topological vector space.
 \end{Example}
 \begin{Definition}When $V$ is a topological vector space, its dual space $V^{*}$ is the space of continuous linear functionals $V \rightarrow \mathbf{R}$.
 \end{Definition}
-Theorem 2.8 generalizes to all locally convex spaces, as follows.\\
+Theorem~\ref{thm:the28} generalizes to all locally convex spaces, as follows.\\
 \begin{Theorem}Let $V$ be a locally convex topological vector space. For distinct $v$ and $w$ in $V$, there is a $\varphi \in V^{*}$ such that $\varphi(v) \neq \varphi(w)$.
 \end{Theorem}
 \begin{proof} See the chapters on locally convex spaces in [3] or [10].\\
@@ -186,27 +181,24 @@ $$
 hence $\int_{0}^{1}\left|g_{2}(x)\right|^{p} \mathrm{~d} x=\frac{1}{2} \int_{0}^{1}|f(x)|^{p} \mathrm{~d} x$. Since $|\varphi(f)| \geq 1,\left|\varphi\left(g_{i}\right)\right| \geq 1 / 2$ for some $i$. Let $f_{1}=2 g_{i}$, so $\left|\varphi\left(f_{1}\right)\right| \geq 1$ and $\int_{0}^{1}\left|f_{1}(x)\right|^{p} \mathrm{~d} x=2^{p} \int_{0}^{1}\left|g_{i}(x)\right|^{p} \mathrm{~d} x=2^{p-1} \int_{0}^{1}|f(x)|^{p} \mathrm{~d} x$. Note $2^{p-1}<1$ since $p<1$.
 
 Iterate this to get a sequence $\left\{f_{n}\right\}$ in $L^{p}[0,1]$ such that $\left|\varphi\left(f_{n}\right)\right| \geq 1$ and
-
-$$
+\[
 d\left(f_{n}, 0\right)=\int_{0}^{1}\left|f_{n}(x)\right|^{p} \mathrm{~d} x=\left(2^{p-1}\right)^{n} \int_{0}^{1}|f(x)|^{p} \mathrm{~d} x \rightarrow 0
-$$
-
+\]
 which contradicts the continuity of $\varphi$.
 \end{proof}
+
 \section{More Spaces with Dual Space $0$}
 We recall the definition of $L^{p}$-spaces for a measure space and then extend Theorem 2.21 quite generally.
 
 \begin{Definition} Let ( $X, \mathcal{M}, \mu$ ) be a measure space. For $p>0$, set
-
-$$
+\[
 L^{p}(\mu) \stackrel{\text { def }}{=}\left\{f: X \rightarrow \mathbf{R}: f \text { measurable and } \int_{X}|f|^{p} \mathrm{~d} \mu<\infty\right\}
-$$
+\]
 with functions that are equal almost everywhere being identified with one another.\\
 The metric used on $L^{p}(\mu)$ is
-
-$$
+\[
 d(f, g)= \begin{cases}\left(\int_{X}|f-g|^{p} \mathrm{~d} \mu\right)^{1 / p}, & \text { if } p \geq 1 \\ \int_{X}|f-g|^{p} \mathrm{~d} \mu, & \text { if } 0<p<1\end{cases}
-$$
+\]
 \end{Definition}
 The reason for these choices, and a discussion of common properties of $L^{p}(\mu)$ for all $p>0$, is discussed in the appendix.
 

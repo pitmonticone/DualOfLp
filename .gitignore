@@ -34,3 +34,12 @@
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
+*.pdf 
+*.aux 
+*.log 
+*.pdfsync 
+*.gz 
+*.snm 
+*.out 
+*.toc 
+*.nav
