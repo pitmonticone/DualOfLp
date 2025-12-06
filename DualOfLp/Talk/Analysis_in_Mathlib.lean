@@ -2,6 +2,8 @@
 
 import Mathlib
 
+noncomputable section
+
 section Filter
 
 open Filter Topology
@@ -86,6 +88,40 @@ variable [(i : ι) → NormedAddCommGroup (E i)] [MeasurableSpace V] (μ : Measu
 example : PiLp p E = ((i : ι) → E i) := rfl
 example : PreLp (α := ι) E = ((i : ι) → E i) := rfl
 
-#check ae μ
+open ENNReal NNReal
 
-end Lp
+def μL : Measure ℝ := (by volume_tac)
+
+open Set in
+def μD : OuterMeasure ℝ where
+  measureOf := fun S ↦ S.indicator (fun _ ↦ (1 : ℝ≥0∞)) Real.pi
+  empty := by simp
+  mono {S T} hST := by
+    apply Set.indicator_le_indicator_of_subset hST (by simp only [zero_le])
+  iUnion_nat s _ := by
+    calc
+    indicator (⋃ n, s n) 1 Real.pi = ⨆ n, indicator (s n) 1 Real.pi :=
+      indicator_iUnion_apply (M := ℝ≥0∞) rfl _ _ _
+    _ ≤ ∑' n, indicator (s n) 1 Real.pi := iSup_le fun _ ↦ ENNReal.le_tsum _
+
+-- abbrev LebesgueFilter := ae μL
+def DiracFilter := ae μD
+
+example : {x : ℝ | x < 0} =ᵐ[μD] (∅ : Set ℝ) := by
+  rw [μD, ae_eq_empty, ← OuterMeasure.measureOf_eq_coe]
+  simp only [Set.indicator_apply_eq_zero, Set.mem_setOf_eq, one_ne_zero,
+    imp_false, not_lt]
+  positivity
+
+example (f g h : ℝ → ℝ) (h1 : f =ᵐ[μL] g) (h2 : g =ᵐ[μL] h) : f =ᵐ[μL] h := by
+-- We need to prove that `∀ᶠ x, f x = h x`, namely `{x | f x = h x} ∈ ae (μL)`, namely
+-- `μL {x | f x ≠ h x} = 0`.
+  have := @Filter.inter_mem (f := ae μL) (s := {x | f x = g x}) (t := {x | g x = h x})
+  have h1 : {x | f x = h x} ∈ ae μL := by
+    convert_to {x | f x = g x ∧ g x = h x} ∈ ae μL
+    sorry
+    sorry
+  filter_upwards [h1] with a ha using ha
+  -- have h2 : ∀ᶠ x in ae μL, f x = h x := by exact h1
+  -- exact h1
+  -- filter_upwards [this]
