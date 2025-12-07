@@ -1,1 +1,1 @@
-import DualOfLp.Example
+import DualOfLp.Chapter1
