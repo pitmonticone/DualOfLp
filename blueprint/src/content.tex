@@ -14,7 +14,7 @@ The only topological vector space over $\mathbb{R}$ with the discrete topology i
 \end{theorem}
 
 \chapter{Locally Convex and Bolognese Spaces}
-In this chapter, all Banach spaces are supposed to be \emph{non-zero}.
+In this chapter, all Banach spaces are supposed to be \emph{non-zero}. Observe that the definition \texttt{BanachSpace} does not exist in Mathlib: before starting off, make sure that you know how to state that a space $V$ is Banach.
 
 \section{Duals of Banach Spaces}
 \begin{theorem}\label{thm:banach_exists_mem_dual_eval_ne_zero}
@@ -28,7 +28,10 @@ $\varphi \in V^*$ such that $\varphi(v) \neq \varphi(w)$.
 
 \section{Bolognese Spaces}
 
-\begin{definition}\label{def:bolognese} A topological vector space is Bolognese if the convex open
+\begin{definition}\label{def:bolognese}
+\lean{Bolognese}
+\leanok
+A topological vector space is Bolognese if the convex open
 sets are a base for the topology: for every open set $U$ around a point, there is a convex open set
 $C$ containing that point such that $C\subseteq U$.
 \end{definition}
@@ -38,19 +41,39 @@ The above definition is \emph{almost identical} to the definition of \href{https
 \begin{theorem}\label{thm:bolognese_iff_lc} A topological vector space is Bolognese if and only if
 it is Locally Convex.
 \end{theorem}
+\lean{bolognese_iff_lc}
+\leanok
+\begin{proof} The proof consists in unfolding the definition of a basis of a topological space, using that when $V$ is a topological vector space (so, addition and scalar multiplications are continuous), there is a basis of the neighborhoods of $0$ made of open, absolutely convex spaces (this is in Mathlib).
+\end{proof}
 
 \begin{theorem}\label{thm:Bolognese_of_Banach} Every Banach space is Bolognese.
 \end{theorem}
+\leanok
+\lean{bolognese_of_banach}
+\begin{proof}
+Since Banach spaces are locally convex, this follows from Theorem~\ref{thm:bolognese_iff_lc}. On the other hand, completeness is probably useless: try to generalise.
+\end{proof}
 
 \begin{theorem}\label{thm:Lp_bolognese_of_p_ge_1} For every $1\le p$ the space $L^p([0,1])$
 \textup{(}where $[0,1]$ is endowed with the restriction of the Lebesgue measure\textup{)} is Bolognese.
 \end{theorem}
+\leanok
+\lean{Lp_bolognese}
+\begin{proof} All the ingredients are in Mathlib: the only ``problem'' is how to state the theorem, namely how to speak about $L^p([0,1])$.
+\end{proof}
+
 Finally, we see that Theorem~\ref{thm:banach_exists_mem_dual_eval_ne} was a special case of a more
 general result:
 \begin{theorem}\label{thm:bolognese_exists_mem_dual_eval_ne}
-Let $V$ be a Bolognese space and let $v\neq w \in V$ be distinct elements of $V$. There is a
+Let $V$ be a \emph{Hausdorff} Bolognese space and let $v\neq w \in V$ be distinct elements of $V$. There is a
 $\varphi \in V^*$ such that $\varphi(v) \neq \varphi(w)$.
 \end{theorem}
+\leanok
+\lean{separates_dual_of_bolognese}
+\begin{proof}
+Once more, the proof is basically a matter of finding the righ formulation and right statement in Mathlib. Observe (\emph{i.~e.}: try!) that you can assume T1 instead of Hausdorff, if you so wish.
+\end{proof}
+
 \section{Non-Bolognese Spaces}
 
 It comes the question of understanding whether every space is Bolognese and, if not, to produce
