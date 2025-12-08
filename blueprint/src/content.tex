@@ -20,7 +20,7 @@ The only topological vector space over $\RR$ with the discrete topology is the z
 \end{theorem}
 \begin{proof}
 \leanok
-Let $E$ be a discrete, real, topological vector space: for every $v\in E$, y continuity of the multiplication, the line $\RR\smul v$ is both connected and discrete, so it is a singleton. This shows $v=0$.
+Let $E$ be a discrete, real, topological vector space: for every $v\in E$, y continuity of the multiplication, the line $\RR\cdot v$ is both connected and discrete, so it is a singleton. This shows $v=0$.
 \end{proof}
 
 \chapter{Locally Convex and Bolognese Spaces}
@@ -30,11 +30,25 @@ In this chapter, all Banach spaces are supposed to be \emph{non-zero}. Observe t
 \begin{theorem}\label{thm:banach_exists_mem_dual_eval_ne_zero}
 If $V$ is a Banach space and $v\neq 0$, then some $\varphi \in V^*$ satisfies $\varphi(v) \neq 0$.
 \end{theorem}
+\leanok
+\lean{nonzero_functional_of_banach}
+\begin{proof}
+\leanok
+The result is in Mathlib \emph{verbatim}, the problem is to find it.
+
+\emph{Suggestion :} prove first the \textbf{separation result} \ref{thm:banach_exists_mem_dual_eval_ne}.
+\end{proof}
 
 \begin{theorem}\label{thm:banach_exists_mem_dual_eval_ne}
 Let $V$ be a Banach space and let $v\neq w\neq w$ be two distinct elements of $V$. There is a
 $\varphi \in V^*$ such that $\varphi(v) \neq \varphi(w)$.
 \end{theorem}
+\leanok
+\lean{separating_dual_of_banach}
+\begin{proof} See the proof of Theorem~\ref{thm:banach_exists_mem_dual_eval_ne_zero}.
+
+\emph{Extra questions:} Are you sure that completeness is necessary?
+\end{proof}
 
 \section{Bolognese Spaces}
 
