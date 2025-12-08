@@ -1,17 +1,27 @@
-All vector spaces in this document are over the field $\mathbb{R}$ of real numbers.
+All vector spaces in this document are over the field $\RR$ of real numbers.
 \chapter{Mise en bouche}
 \begin{theorem}
 \leanok
 \lean{unique_topology_of_finiteDimensional}
-	The usual topology on $\mathbb{R}^{n}$ is the only Hausdorff topology that makes it a topological
+	The usual topology on $\RR^{n}$ is the only Hausdorff topology that makes it a topological
   vector space.
 \end{theorem}
+\begin{proof}
+\leanok
+Let $\TT$ be a Hausdorff topology on $\RR^n$ making it a topological vector space. The identity map $\operatorname{id}\colon \bigl(\RR^n\bigr){\text{can}}\to\bigl(\RR^n\bigr)_{\TT}$, where the first space is endowed with the usual topology and the second with $\TT$ is a continuous (linear) bijection between Hausdorff spaces, and it is therefore a homeomorphism.
+
+Of course, the whole point is to state this in Lean.
+\end{proof}
 
 \begin{theorem}
-The only topological vector space over $\mathbb{R}$ with the discrete topology is the zero space.
+The only topological vector space over $\RR$ with the discrete topology is the zero space.
 \lean{discrete_topology_implies_subsingleton}
 \leanok
 \end{theorem}
+\begin{proof}
+\leanok
+Let $E$ be a discrete, real, topological vector space: for every $v\in E$, y continuity of the multiplication, the line $\RR\smul v$ is both connected and discrete, so it is a singleton. This shows $v=0$.
+\end{proof}
 
 \chapter{Locally Convex and Bolognese Spaces}
 In this chapter, all Banach spaces are supposed to be \emph{non-zero}. Observe that the definition \texttt{BanachSpace} does not exist in Mathlib: before starting off, make sure that you know how to state that a space $V$ is Banach.
@@ -85,7 +95,7 @@ $\sum_{n\geq 0}\lvert x_n\rvert ^p < \infty$ is not Bolognese.
 
 Passing from numerical sequences to measurable functions yields other examples:
 \begin{theorem}\label{thm:L_p_not_bolognese} For every $0<p<1$, the space $L^{p}([0,1])$ of equivalence classes of
-measurable functions $f\colon [0,1]\to\mathbb{R}$ satisfying
+measurable functions $f\colon [0,1]\to\RR$ satisfying
 $\int_0^1\lvert f(x)\rvert ^{p}\mathrm{d}x < \infty$ \textup{(}with respect to the Lebesgue
 measure\textup{)} is not Bolognese.
 \end{theorem}
@@ -109,5 +119,5 @@ Can Theorem~\ref{thm:L_p_not_bolognese} be generalised beyond the case $X=[0,1]$
 \begin{theorem}\label{thm:Lp_bolognese_iff} For every $0<p<1$, the space $L^p(\mu)$ is Bolognese if and only if $\mu$ assumes finitely many values.
 \end{theorem}
 As a corollary of the above result, we obtain a new proof of Theorem~\ref{thm:L_p_not_bolognese}:
-\begin{corollary}\label{cor:L_p_not_bolognese} The space $L^{p}([0,1])$ of equivalence classes of measurable functions $f\colon [0,1]\to\mathbb{R}$ satisfying $\int_0^1\lvert f(x)\rvert ^{p}\mathrm{d}x < \infty$ \textup{(}with respect to the Lebesgue measure\textup{)} is not Bolognese.
+\begin{corollary}\label{cor:L_p_not_bolognese} The space $L^{p}([0,1])$ of equivalence classes of measurable functions $f\colon [0,1]\to\RR$ satisfying $\int_0^1\lvert f(x)\rvert ^{p}\mathrm{d}x < \infty$ \textup{(}with respect to the Lebesgue measure\textup{)} is not Bolognese.
 \end{corollary}
