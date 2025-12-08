@@ -2,7 +2,8 @@ import Mathlib.Topology.Algebra.Module.FiniteDimension
 import Mathlib.Topology.Connected.PathConnected
 
 /-
-Any two Hausdorff topologies on a finite-dimensional real vector space that make it a topological vector space are equal.
+Any two Hausdorff topologies on a finite-dimensional real vector space that make it a topological
+vector space are equal.
 -/
 theorem unique_topology_of_finiteDimensional
     {E : Type*} [AddCommGroup E] [Module ℝ E] [FiniteDimensional ℝ E]
@@ -15,29 +16,34 @@ theorem unique_topology_of_finiteDimensional
     (h6 : @T2Space E t2) :
     t1 = t2 := by
   apply le_antisymm;
-  · refine' ( continuous_def.mp _ );
-    convert LinearMap.continuous_of_finiteDimensional _;
-    rotate_left;
-    exact ℝ;
-    all_goals try infer_instance;
-    exacts [ LinearMap.id, rfl ];
-  · apply_rules [ continuous_def.mp ];
-    convert LinearMap.continuous_of_finiteDimensional ( LinearMap.id );
-    all_goals try assumption;
+  · refine' continuous_def.mp _
+    convert LinearMap.continuous_of_finiteDimensional _
+    rotate_left
+    exact ℝ
+    all_goals try infer_instance
+    exacts [ LinearMap.id, rfl ]
+  · apply_rules [ continuous_def.mp ]
+    convert LinearMap.continuous_of_finiteDimensional ( LinearMap.id )
+    all_goals try assumption
     infer_instance
 
 /-
 The only topological vector space over $\mathbb{R}$ with the discrete topology is the zero space
 -/
-theorem discrete_topology_implies_subsingleton {E : Type*} [AddCommGroup E] [Module ℝ E] [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] [DiscreteTopology E] : Subsingleton E := by
-  -- Let's take any element $x \in E$ and consider the map $f : \mathbb{R} \to E$ defined by $f(c) = c \cdot x$.
-  have h_cont : ∀ x : E, Continuous (fun c : ℝ => c • x) := by
+theorem discrete_topology_implies_subsingleton {E : Type*} [AddCommGroup E] [Module ℝ E]
+    [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] [DiscreteTopology E] :
+    Subsingleton E := by
+  -- Let's take any element $x \in E$ and consider the map $f : \mathbb{R} \to E$ defined by
+  -- $f(c) = c \cdot x$.
+  have h_cont : ∀ x : E, Continuous (fun c : ℝ ↦ c • x) := by
     continuity;
-  -- Since $E$ is discrete, the map $f$ is continuous from a connected space to a discrete space, so it must be constant.
   have h_const : ∀ x : E, ∀ c : ℝ, c • x = 0 • x := by
-    -- The connected image of a continuous map from a connected space to a discrete space must be a singleton.
     have h_connected : ∀ x : E, IsConnected (Set.range (fun c : ℝ => c • x)) := by
-      exact fun x => isConnected_range ( h_cont x );
-    intro x c; specialize h_connected x; have := h_connected.isPreconnected.subsingleton ( Set.mem_range_self 0 ) ( Set.mem_range_self c ) ; aesop;
-  refine' ⟨ fun x y => _ ⟩;
-  have := h_const x 1; have := h_const y 1; aesop;
+      exact fun x => isConnected_range ( h_cont x )
+    intro x c
+    specialize h_connected x
+    have := h_connected.isPreconnected.subsingleton (Set.mem_range_self 0) (Set.mem_range_self c)
+    exact_mod_cast this.symm
+  refine' ⟨ fun x y => _ ⟩
+  have := h_const x 1; have := h_const y 1
+  simp_all
