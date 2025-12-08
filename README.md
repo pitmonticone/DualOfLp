@@ -7,9 +7,9 @@ The main goal is to get your hands dirty with a little bit of Functional Analysi
 * Banach spaces and their duals.
 * $L^p$ and $\ell^p$-spaces.
 
-The main goal is to prove that the (continuous) dual of $\ell^p(\mathbb{N},\mathbb{R})$ is $0$ for every $0<p<1$: as a warm-up we first prove that $\ell^p$ is not locally convex for such exponents.
+The main goal is to prove that the (continuous) dual of $L^p([0,1])$ is $0$ for every $0<p<1$: as a warm-up we first prove that $\ell^p$ is not locally convex for such exponents, and then we prove the same result for $L^p([0,1])$.
 
-Then we generalise the same arguments to prove that $L^1([0,1])$ is not locally convex, and has trivial dual.
+In the final chapter we try to generalise the previous result from the space $[0,1]$ to other spaces.
 
 The blueprint follows [the nice note](https://kconrad.math.uconn.edu/blurbs/analysis/lpspace.pdf) " $L^p$-spaces for $0<p<1$ " by Keith Conrad: I thank him for some exchanges and for his permission to steal this material.
 
