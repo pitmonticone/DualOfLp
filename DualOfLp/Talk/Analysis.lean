@@ -20,7 +20,6 @@ variable {α β γ : Type*}
 
 lemma mono (f : α → β) {F G : Filter α} (h : F ≤ G) : F.map f ≤ G.map f := by sorry
 
--- # ⌘
 
 /-- The function `f` tends to `G` along `F`. -/
 def Tendsto (f : α → β) (F : Filter α) (G : Filter β) := F.map f ≤ G
@@ -72,10 +71,8 @@ open MeasureTheory ENNReal Set
 
 /-! The Dirac (outer) meaesure at `π ∈ ℝ`. -/
 def μD : OuterMeasure ℝ where
-  measureOf := by
-    intro S
-    use Set.indicator S (fun _ ↦ 1) Real.pi
-  empty := by simp
+  measureOf := by sorry
+  empty := by sorry
   mono {S T} hST := by sorry
   iUnion_nat := by sorry
 
@@ -93,9 +90,7 @@ example (f g h : ℝ → ℝ) (h1 : f =ᵐ[μL] g) (h2 : g =ᵐ[μL] h) : f =ᵐ
 example (f g h : ℝ → ℝ) (h1 : f =ᵐ[μL] g) (h2 : g =ᵐ[μL] h) : f =ᵐ[μL] h := by sorry
 
 
-example (f g h : ℝ → ℝ) (h1 : f =ᵐ[μL] g) (h2 : g =ᵐ[μL] h) : f =ᵐ[μL] h := by
-  filter_upwards [h1, h2]
-  simp +contextual
+example (f g h : ℝ → ℝ) (h1 : f =ᵐ[μL] g) (h2 : g =ᵐ[μL] h) : f =ᵐ[μL] h := by sorry
 
 end Lp
 
