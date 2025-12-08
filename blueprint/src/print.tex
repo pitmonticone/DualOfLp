@@ -8,6 +8,9 @@
 \usepackage[unicode,colorlinks=true,linkcolor=blue,urlcolor=magenta, citecolor=blue]{hyperref}
 
 \usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+\usepackage[style=trad-alpha]{biblatex}
+\ExecuteBibliographyOptions{safeinputenc=true,backref=true,giveninits,useprefix=true,maxnames=5, doi=true,eprint=true,isbn=false,url=true}
+\addbibresource{references.bib}
 
 \input{macros/common}
 \input{macros/print}
@@ -19,4 +22,5 @@
 \begin{document}
 \maketitle
 \input{content}
+\printbibliography[heading=bibintoc]
 \end{document}
