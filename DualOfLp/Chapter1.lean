@@ -28,13 +28,13 @@ theorem unique_topology_of_finiteDimensional
     infer_instance
 
 /-
-The only topological vector space over $\mathbb{R}$ with the discrete topology is the zero space
+The only topological vector space over `ℝ` with the discrete topology is the zero space
 -/
 theorem discrete_topology_implies_subsingleton {E : Type*} [AddCommGroup E] [Module ℝ E]
     [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] [DiscreteTopology E] :
     Subsingleton E := by
-  -- Let's take any element $x \in E$ and consider the map $f : \mathbb{R} \to E$ defined by
-  -- $f(c) = c \cdot x$.
+/- Let's take any element `x : E` and consider the map `f : ℝ → E` defined by
+  `f(c) = c • x` -/
   have h_cont : ∀ x : E, Continuous (fun c : ℝ ↦ c • x) := by
     continuity;
   have h_const : ∀ x : E, ∀ c : ℝ, c • x = 0 • x := by
