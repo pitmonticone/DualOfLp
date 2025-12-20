@@ -5,6 +5,7 @@ Authors: Filippo A. E. Nuccio, Aristotle by Harmonic
 -/
 
 import Mathlib
+import DualOfLp.Chapter2_2
 
 open scoped BigOperators
 
@@ -29,13 +30,6 @@ set_option relaxedAutoImplicit false
 set_option autoImplicit false
 
 noncomputable section
-
-/-
-A topological vector space is Bolognese if and only if it is Locally Convex.
--/
-def Bolognese (E : Type*) [AddCommGroup E] [Module ℝ E] [TopologicalSpace E] : Prop :=
-  ∀ (U : Set E) (x : E), IsOpen U → x ∈ U → ∃ C, IsOpen C ∧ Convex ℝ C ∧ x ∈ C ∧ C ⊆ U
-
 
 /-
 Distance on $\ell^p$ for $0 < p < 1$.
