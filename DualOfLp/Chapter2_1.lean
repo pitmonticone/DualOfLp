@@ -1,3 +1,9 @@
+/-
+Copyright (c) 2025 Filippo A. E. Nuccio. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Filippo A. E. Nuccio
+-/
+
 import Mathlib
 
 theorem nonzero_functional_of_banach (E : Type*) {v : E} [NormedAddCommGroup E] [NormedSpace ℝ E]
