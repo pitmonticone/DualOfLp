@@ -67,7 +67,9 @@ it is Locally Convex.
 \end{theorem}
 \lean{bolognese_iff_lc}
 \leanok
-\begin{proof} The proof consists in unfolding the definition of a basis of a topological space, using that when $V$ is a topological vector space (so, addition and scalar multiplications are continuous), there is a basis of the neighborhoods of $0$ made of open, absolutely convex spaces (this is in Mathlib).
+\begin{proof}
+\leanok
+The proof consists in unfolding the definition of a basis of a topological space, using that when $V$ is a topological vector space (so, addition and scalar multiplications are continuous), there is a basis of the neighborhoods of $0$ made of open, absolutely convex spaces (this is in Mathlib).
 \end{proof}
 
 \begin{theorem}\label{thm:Bolognese_of_Banach} Every Banach space is Bolognese.
@@ -75,6 +77,7 @@ it is Locally Convex.
 \leanok
 \lean{bolognese_of_banach}
 \begin{proof}
+\leanok
 Since Banach spaces are locally convex, this follows from Theorem~\ref{thm:bolognese_iff_lc}. On the other hand, completeness is probably useless: try to generalise.
 \end{proof}
 
@@ -83,7 +86,9 @@ Since Banach spaces are locally convex, this follows from Theorem~\ref{thm:bolog
 \end{theorem}
 \leanok
 \lean{Lp_bolognese}
-\begin{proof} All the ingredients are in Mathlib: the only ``problem'' is how to state the theorem, namely how to speak about $L^p([0,1])$.
+\begin{proof}
+\leanok
+All the ingredients are in Mathlib: the only ``problem'' is how to state the theorem, namely how to speak about $L^p([0,1])$.
 \end{proof}
 
 Finally, we see that Theorem~\ref{thm:banach_exists_mem_dual_eval_ne} was a special case of a more
@@ -95,6 +100,7 @@ $\varphi \in V^*$ such that $\varphi(v) \neq \varphi(w)$.
 \leanok
 \lean{separates_dual_of_bolognese}
 \begin{proof}
+\leanok
 Once more, the proof is basically a matter of finding the righ formulation and right statement in Mathlib. Observe (\emph{i.~e.}: try!) that you can assume T1 instead of Hausdorff, if you so wish.
 \end{proof}
 
@@ -102,10 +108,33 @@ Once more, the proof is basically a matter of finding the righ formulation and r
 
 It comes the question of understanding whether every space is Bolognese and, if not, to produce
 examples of non-Bolognese ones.
-\begin{theorem}[{Tychonoff (1935), see~\cite{Tyc35}}]\label{thm:lp_not_bolognese} For every $0<p<1$,
+\begin{theorem}[{Tychonoff (1935), see~\cite{Tyc35}}]\label{thm:lp_not_bolognese}
+\leanok
+\lean{lp_not_bolognese}
+For every $0<p<1$,
 the space $\ell^{p}$ of sequences $(x_n)_{n\in\mathbb{N}}$ of real numbers such that
 $\sum_{n\geq 0}\lvert x_n\rvert ^p < \infty$ is not Bolognese.
 \end{theorem}
+\begin{proof}
+\leanok
+Arguing by contradiction, suppose that the unit ball $\BB{1}\subseteq \ell^p$ contains a convex open $0 \ni U\subseteq \BB{1}$: then $U$ contains a ball $\BB{\varepsilon}$ for some $\varepsilon$.
+
+For each $1\le i\le \infty$, let $x_i=(\varepsilon\delta_{i,j})_{j}$ be the vector whose coordinates are $0$ at all $j\ne i$ and whose $i$-th coordinate is $\varepsilon$: clearly, $x_i\in \BB{\varepsilon}\subseteq \ell^p$. Consider now, for each $N\in\NN$, the vector
+\[
+y_N=\sum_{i=1}^N \frac{1}{C_N\cdot i^{1/p}}x_i=\bigr(0,\dots,\frac{\varepsilon}{C_Ni^{1/p}}\bigl)
+\]
+where $C_N=\sum_{i=1}^N i^{1/p}$. Clearly all $y_N$ are (finite) linear combinations of the $x_i$'s, so they all belong to the convex set $U\subseteq \BB{1}$. On the other hand,
+\[
+\Vert y_N\Vert=\sqrt[p]{\left(\sum_{i=1}^N \frac{\varepsilon}{C_N\cdot i^{1/p}}\right)^p}=
+\sqrt[p]{\sum_{i=1}^N \lvert(\frac{\varepsilon^p}{C_N^p\cdot i}\rvert)}=\frac{\varepsilon}{C_N}\sqrt[p]{\sum_{i=1}^N \frac{1}{i}}.
+\]
+Now, since
+\[
+\lim_{N\to+\infty}\frac{1}{\sum _{i=1}^N \sqrt[p]{i}}\sqrt[p]{\sum_{i=1}^N \frac{1}{i}}=
+\lim_{N\to+\infty}\frac{1}{\sum _{i=1}^N \sqrt[p]{i}}\sqrt[p]{\sum_{i=1}^N \frac{1}{i}}=+\infty
+\]
+there exists $N$ such that $\Vert y_N\Vert > 1$, contradicting the assumption that $y_N\in\BB{1}$ for all $N$.
+\end{proof}
 
 Passing from numerical sequences to measurable functions yields other examples:
 \begin{theorem}\label{thm:L_p_not_bolognese} For every $0<p<1$, the space $L^{p}([0,1])$ of equivalence classes of
@@ -113,14 +142,16 @@ measurable functions $f\colon [0,1]\to\RR$ satisfying
 $\int_0^1\lvert f(x)\rvert ^{p}\mathrm{d}x < \infty$ \textup{(}with respect to the Lebesgue
 measure\textup{)} is not Bolognese.
 \end{theorem}
-
-The following result shows that being Bolognese, or Locally Convex, is really crucial in Theorem~\ref{thm:bolognese_exists_mem_dual_eval_ne}:
+The above theorem can be proven directly, but we rather deduce it as a corollary of the following one, combined with Theorem~\ref{thm:bolognese_exists_mem_dual_eval_ne}:
 \begin{theorem}\label{thm:Lp_dual_zero} For every $0<p<1$ the dual space $L^p([0,1])^\ast$ is equal to $0$.
 \end{theorem}
+\begin{proof}
+See~\cite{Con25}.
+\end{proof}
 
 
 \chapter{Other Non-Bolognese Spaces}
-
+The results in this chapter are all borrowed from~\cite{Con25} and none of them has been formalised during the workshop.
 \begin{theorem}\label{thm:Lp_mu_metric} Let $(X,\mu)$ be a measure space. For every $0<p$ the space $L^p(\mu)$ is a metric space with metric
 \[
 d(f, g)= \begin{cases}
