@@ -1,8 +1,8 @@
 All vector spaces in this document are over the field $\RR$ of real numbers.
 \chapter{Mise en bouche}
 \begin{theorem}
-\leanok
 \lean{unique_topology_of_finiteDimensional}
+\leanok
 	The usual topology on $\RR^{n}$ is the only Hausdorff topology that makes it a topological
   vector space.
 \end{theorem}
@@ -29,9 +29,9 @@ In this chapter, all Banach spaces are supposed to be \emph{non-zero}. Observe t
 \section{Duals of Banach Spaces}
 \begin{theorem}\label{thm:banach_exists_mem_dual_eval_ne_zero}
 If $V$ is a Banach space and $v\neq 0$, then some $\varphi \in V^*$ satisfies $\varphi(v) \neq 0$.
-\end{theorem}
-\leanok
 \lean{nonzero_functional_of_banach}
+\leanok
+\end{theorem}
 \begin{proof}
 \leanok
 The result is in Mathlib \emph{verbatim}, the problem is to find it.
@@ -42,11 +42,13 @@ The result is in Mathlib \emph{verbatim}, the problem is to find it.
 \begin{theorem}\label{thm:banach_exists_mem_dual_eval_ne}
 Let $V$ be a Banach space and let $v\neq w\neq w$ be two distinct elements of $V$. There is a
 $\varphi \in V^*$ such that $\varphi(v) \neq \varphi(w)$.
-\end{theorem}
-\leanok
 \lean{separating_dual_of_banach}
-\begin{proof} See the proof of Theorem~\ref{thm:banach_exists_mem_dual_eval_ne_zero}.
-
+\leanok
+\end{theorem}
+\begin{proof}
+\leanok
+\uses{thm:bolognese_exists_mem_dual_eval_ne}
+See the proof of Theorem~\ref{thm:banach_exists_mem_dual_eval_ne_zero}.
 \emph{Extra questions:} Are you sure that completeness is necessary?
 \end{proof}
 
@@ -64,28 +66,32 @@ The above definition is \emph{almost identical} to the definition of \href{https
 
 \begin{theorem}\label{thm:bolognese_iff_lc} A topological vector space is Bolognese if and only if
 it is Locally Convex.
-\end{theorem}
 \lean{bolognese_iff_lc}
+\uses{def:bolognese}
 \leanok
+\end{theorem}
 \begin{proof}
 \leanok
 The proof consists in unfolding the definition of a basis of a topological space, using that when $V$ is a topological vector space (so, addition and scalar multiplications are continuous), there is a basis of the neighborhoods of $0$ made of open, absolutely convex spaces (this is in Mathlib).
 \end{proof}
 
 \begin{theorem}\label{thm:Bolognese_of_Banach} Every Banach space is Bolognese.
-\end{theorem}
-\leanok
 \lean{bolognese_of_banach}
+\uses{def:bolognese}
+\leanok
+\end{theorem}
 \begin{proof}
 \leanok
+\uses{thm:bolognese_iff_lc}
 Since Banach spaces are locally convex, this follows from Theorem~\ref{thm:bolognese_iff_lc}. On the other hand, completeness is probably useless: try to generalise.
 \end{proof}
 
 \begin{theorem}\label{thm:Lp_bolognese_of_p_ge_1} For every $1\le p$ the space $L^p([0,1])$
 \textup{(}where $[0,1]$ is endowed with the restriction of the Lebesgue measure\textup{)} is Bolognese.
-\end{theorem}
-\leanok
 \lean{Lp_bolognese}
+\uses{def:bolognese}
+\leanok
+\end{theorem}
 \begin{proof}
 \leanok
 All the ingredients are in Mathlib: the only ``problem'' is how to state the theorem, namely how to speak about $L^p([0,1])$.
@@ -96,9 +102,10 @@ general result:
 \begin{theorem}\label{thm:bolognese_exists_mem_dual_eval_ne}
 Let $V$ be a \emph{Hausdorff} Bolognese space and let $v\neq w \in V$ be distinct elements of $V$. There is a
 $\varphi \in V^*$ such that $\varphi(v) \neq \varphi(w)$.
-\end{theorem}
-\leanok
 \lean{separates_dual_of_bolognese}
+\uses{def:bolognese}
+\leanok
+\end{theorem}
 \begin{proof}
 \leanok
 Once more, the proof is basically a matter of finding the righ formulation and right statement in Mathlib. Observe (\emph{i.~e.}: try!) that you can assume T1 instead of Hausdorff, if you so wish.
@@ -109,8 +116,9 @@ Once more, the proof is basically a matter of finding the righ formulation and r
 It comes the question of understanding whether every space is Bolognese and, if not, to produce
 examples of non-Bolognese ones.
 \begin{theorem}[{Tychonoff (1935), see~\cite{Tyc35}}]\label{thm:lp_not_bolognese}
-\leanok
 \lean{lp_not_bolognese}
+\uses{def:bolognese}
+\leanok
 For every $0<p<1$,
 the space $\ell^{p}$ of sequences $(x_n)_{n\in\mathbb{N}}$ of real numbers such that
 $\sum_{n\geq 0}\lvert x_n\rvert ^p < \infty$ is not Bolognese.
