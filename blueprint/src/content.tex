@@ -146,17 +146,30 @@ there exists $N$ such that $\Vert y_N\Vert > 1$, contradicting the assumption th
 
 Passing from numerical sequences to measurable functions yields other examples:
 \begin{theorem}\label{thm:L_p_not_bolognese}
-\uses{thm:Lp_dual_zero, thm:bolognese_exists_mem_dual_eval_ne}
+\lean{L_p_not_bolognese}
+\uses{def:bolognese}
+\leanok
 For every $0<p<1$, the space $L^{p}([0,1])$ of equivalence classes of
 measurable functions $f\colon [0,1]\to\RR$ satisfying
 $\int_0^1\lvert f(x)\rvert ^{p}\mathrm{d}x < \infty$ \textup{(}with respect to the Lebesgue
 measure\textup{)} is not Bolognese.
 \end{theorem}
+\begin{proof}
+\leanok
+Combine Theorem~\ref{thm:Lp_dual_zero} and Theorem~\ref{thm:bolognese_exists_mem_dual_eval_ne}.
+\uses{thm:Lp_dual_zero, thm:bolognese_exists_mem_dual_eval_ne}
+\end{proof}
+
 The above theorem can be proven directly, but we rather deduce it as a corollary of the following one, combined with Theorem~\ref{thm:bolognese_exists_mem_dual_eval_ne}:
 \begin{theorem}\label{thm:Lp_dual_zero} For every $0<p<1$ the dual space $L^p([0,1])^\ast$ is equal to $0$.
+\lean{Lp_dual_zero}
+\uses{def:bolognese}
+\leanok
 \end{theorem}
 \begin{proof}
-See~\cite{Con25}.
+\leanok
+\uses{thm:bolognese_exists_mem_dual_eval_ne}
+For a direct proof, see~\cite{Con25}.
 \end{proof}
 
 
