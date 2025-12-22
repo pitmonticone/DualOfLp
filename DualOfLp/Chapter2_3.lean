@@ -410,44 +410,6 @@ theorem lp_not_bolognese (p : ℝ≥0∞) [Fact (0 < p)] [Fact (p < 1)] :
 #synth TopologicalSpace (Fin 3 → ℝ)
 
 /-
-The usual topology on $\RR^{n}$ is the only Hausdorff topology that makes it a topological vector space.
--/
-theorem unique_topology_of_finiteDimensional (n : ℕ) (t : TopologicalSpace (Fin n → ℝ))
-    (h1 : @IsTopologicalAddGroup (Fin n → ℝ) t (inferInstance : AddGroup (Fin n → ℝ)))
-    (h2 : @ContinuousSMul ℝ (Fin n → ℝ) (inferInstance : SMul ℝ (Fin n → ℝ)) inferInstance t)
-    (h3 : @T2Space (Fin n → ℝ) t) :
-    t = (inferInstance : TopologicalSpace (Fin n → ℝ)) := by
-      grind
-
-/-
-The only topological vector space over $\RR$ with the discrete topology is the zero space.
--/
-theorem discrete_topology_implies_subsingleton (E : Type*) [AddCommGroup E] [Module ℝ E]
-    [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E]
-    [DiscreteTopology E] : Subsingleton E := by
-      exact?
-
-/-
-Checking for existence of Hahn-Banach theorems in Mathlib.
--/
-#check exists_dual_vector
-#check SeparatingDual
-
-/-
-If $V$ is a Banach space and $v\neq 0$, then some $\varphi \in V^*$ satisfies $\varphi(v) \neq 0$.
--/
-theorem nonzero_functional_of_banach (V : Type*) [NormedAddCommGroup V] [NormedSpace ℝ V] [CompleteSpace V]
-    (v : V) (hv : v ≠ 0) : ∃ (f : V →L[ℝ] ℝ), f v ≠ 0 := by
-      exact?
-
-/-
-Let $V$ be a Banach space and let $v\neq w$ be two distinct elements of $V$. There is a $\varphi \in V^*$ such that $\varphi(v) \neq \varphi(w)$.
--/
-theorem separating_dual_of_banach (V : Type*) [NormedAddCommGroup V] [NormedSpace ℝ V] [CompleteSpace V]
-    (v w : V) (h : v ≠ w) : ∃ (f : V →L[ℝ] ℝ), f v ≠ f w := by
-      exact?
-
-/-
 Distance on Lp space for 0 < p < 1.
 -/
 open MeasureTheory ENNReal
