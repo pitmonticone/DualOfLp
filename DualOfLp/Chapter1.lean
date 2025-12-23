@@ -7,10 +7,8 @@ Authors: Filippo A. E. Nuccio, Aristotle by Harmonic
 import Mathlib.Topology.Algebra.Module.FiniteDimension
 import Mathlib.Topology.Connected.PathConnected
 
-/-
-Any two Hausdorff topologies on a finite-dimensional real vector space that make it a topological
-vector space are equal.
--/
+/-- Any two Hausdorff topologies on a finite-dimensional real vector space that make it a topological
+vector space are equal. -/
 theorem unique_topology_of_finiteDimensional
     {E : Type*} [AddCommGroup E] [Module ℝ E] [FiniteDimensional ℝ E]
     (t1 t2 : TopologicalSpace E)
@@ -33,9 +31,7 @@ theorem unique_topology_of_finiteDimensional
     all_goals try assumption
     infer_instance
 
-/-
-The only topological vector space over `ℝ` with the discrete topology is the zero space
--/
+/-- The only topological vector space over `ℝ` with the discrete topology is the zero space. -/
 theorem discrete_topology_implies_subsingleton {E : Type*} [AddCommGroup E] [Module ℝ E]
     [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] [DiscreteTopology E] :
     Subsingleton E := by

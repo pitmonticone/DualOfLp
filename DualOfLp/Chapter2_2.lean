@@ -30,7 +30,6 @@ theorem bolognese_iff_lc (E : Type*) [AddCommGroup E] [Module ℝ E] [Topologica
     · obtain ⟨_, ⟨mem_U, -⟩, sub⟩ := hT
       filter_upwards [mem_U] with a ha using sub ha
   · intro U x hU hx
-    -- have :=
     set U₀ := U - {x} with hU₀_def
     have U₀_mem : 0 ∈ U₀ := by
       rw [hU₀_def, sub_singleton, mem_image]
@@ -56,8 +55,7 @@ theorem bolognese_of_banach (E : Type*) [NormedAddCommGroup E] [NormedSpace ℝ 
 
 /-- The restriction of the Lebesgue measure on `ℝ` to `[0,1]`: it is actually the
 pull-back (and coincides, on `[0,1]` with the restriction). -/
-noncomputable
-def ν : Measure (Icc (0 : ℝ) 1) :=
+noncomputable def ν : Measure (Icc (0 : ℝ) 1) :=
   Measure.comap ((↑) : (Icc (0 : ℝ) 1) → ℝ) (by volume_tac)
 
 theorem Lp_bolognese (p : ℝ≥0∞) [Fact (1 ≤ p)] : Bolognese (Lp ℝ p ν) := bolognese_of_banach _
