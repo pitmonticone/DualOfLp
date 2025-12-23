@@ -15,7 +15,8 @@ theorem separating_dual_of_banach (E : Type*) {v w : E} (hvw : v ≠ w) [NormedA
     [NormedSpace ℝ E] [CompleteSpace E] : ∃ φ : StrongDual ℝ E, φ v ≠ φ w :=
   SeparatingDual.exists_separating_of_ne hvw
 
-/- ## Bonus Question
+/-!
+## Bonus Question
 Do you understand why the assumption `(hv : v ≠ 0)` in `nonzero_functional_of_banach` is right
 before the statement, whereas `(hvw : v ≠ w)` in `separating_dual_of_banach` is right after the
 introduction of `v` and `w`?
