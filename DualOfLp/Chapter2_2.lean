@@ -67,5 +67,3 @@ theorem separates_dual_of_bolognese (E : Type*) {v w : E} (hvw : v ≠ w) [AddCo
     [T1Space E] (hE : Bolognese E) : ∃ φ : StrongDual ℝ E, φ v ≠ φ w := by
   rw [bolognese_iff_lc] at hE
   exact SeparatingDual.exists_separating_of_ne hvw
-
-#min_imports
