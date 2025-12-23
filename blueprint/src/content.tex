@@ -1,194 +1,257 @@
 All vector spaces in this document are over the field $\RR$ of real numbers.
+
 \chapter{Mise en bouche}
+
 \begin{theorem}\label{thm:unique_topology_fd}
-\lean{unique_topology_of_finiteDimensional}
-\leanok
-	The usual topology on $\RR^{n}$ is the only Hausdorff topology that makes it a topological
+  \lean{unique_topology_of_finiteDimensional}
+  \leanok
+  The usual topology on $\RR^{n}$ is the only Hausdorff topology that makes it a topological
   vector space.
 \end{theorem}
-\begin{proof}
-\leanok
-Let $\TT$ be a Hausdorff topology on $\RR^n$ making it a topological vector space. The identity map $\operatorname{id}\colon \bigl(\RR^n\bigr){\text{can}}\to\bigl(\RR^n\bigr)_{\TT}$, where the first space is endowed with the usual topology and the second with $\TT$ is a continuous (linear) bijection between Hausdorff spaces, and it is therefore a homeomorphism.
 
-Of course, the whole point is to state this in Lean.
+\begin{proof}
+  \leanok
+  Let $\TT$ be a Hausdorff topology on $\RR^n$ making it a topological vector space. The identity
+  map $\operatorname{id}\colon \bigl(\RR^n\bigr){\text{can}}\to\bigl(\RR^n\bigr)_{\TT}$, where the
+  first space is endowed with the usual topology and the second with $\TT$ is a continuous
+  (linear) bijection between Hausdorff spaces, and it is therefore a homeomorphism.
+
+  Of course, the whole point is to state this in Lean.
 \end{proof}
 
 \begin{theorem}\label{thm:discrete_iff_zero}
-The only topological vector space over $\RR$ with the discrete topology is the zero space.
-\lean{discrete_topology_implies_subsingleton}
-\leanok
+  \lean{discrete_topology_implies_subsingleton}
+  \leanok
+  The only topological vector space over $\RR$ with the discrete topology is the zero space.
 \end{theorem}
+
 \begin{proof}
-\leanok
-Let $E$ be a discrete, real, topological vector space: for every $v\in E$, y continuity of the multiplication, the line $\RR\cdot v$ is both connected and discrete, so it is a singleton. This shows $v=0$.
+  \leanok
+  Let $E$ be a discrete, real, topological vector space: for every $v\in E$, y continuity of the
+  multiplication, the line $\RR\cdot v$ is both connected and discrete, so it is a singleton.
+  This shows $v=0$.
 \end{proof}
 
 \chapter{Locally Convex and Bolognese Spaces}
-In this chapter, all Banach spaces are supposed to be \emph{non-zero}. Observe that the definition \texttt{BanachSpace} does not exist in Mathlib: before starting off, make sure that you know how to state that a space $V$ is Banach.
+
+In this chapter, all Banach spaces are supposed to be \emph{non-zero}. Observe that the definition
+\texttt{BanachSpace} does not exist in Mathlib: before starting off, make sure that you know how
+to state that a space $V$ is Banach.
 
 \section{Duals of Banach Spaces}
-\begin{theorem}\label{thm:banach_exists_mem_dual_eval_ne_zero}
-If $V$ is a Banach space and $v\neq 0$, then some $\varphi \in V^*$ satisfies $\varphi(v) \neq 0$.
-\lean{nonzero_functional_of_banach}
-\leanok
-\end{theorem}
-\begin{proof}
-\leanok
-The result is in Mathlib \emph{verbatim}, the problem is to find it.
 
-\emph{Suggestion :} prove first the \textbf{separation result} \ref{thm:banach_exists_mem_dual_eval_ne}.
+\begin{theorem}\label{thm:banach_exists_mem_dual_eval_ne_zero}
+  \lean{nonzero_functional_of_banach}
+  \leanok
+  If $V$ is a Banach space and $v\neq 0$, then some $\varphi \in V^*$ satisfies
+  $\varphi(v) \neq 0$.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  The result is in Mathlib \emph{verbatim}, the problem is to find it.
+
+  \emph{Suggestion :} prove first the \textbf{separation result}
+  \ref{thm:banach_exists_mem_dual_eval_ne}.
 \end{proof}
 
 \begin{theorem}\label{thm:banach_exists_mem_dual_eval_ne}
-Let $V$ be a Banach space and let $v\neq w\neq w$ be two distinct elements of $V$. There is a
-$\varphi \in V^*$ such that $\varphi(v) \neq \varphi(w)$.
-\lean{separating_dual_of_banach}
-\leanok
+  \lean{separating_dual_of_banach}
+  \leanok
+  Let $V$ be a Banach space and let $v\neq w\neq w$ be two distinct elements of $V$. There is a
+  $\varphi \in V^*$ such that $\varphi(v) \neq \varphi(w)$.
 \end{theorem}
+
 \begin{proof}
-\leanok
-\uses{thm:bolognese_exists_mem_dual_eval_ne}
-See the proof of Theorem~\ref{thm:banach_exists_mem_dual_eval_ne_zero}.
-\emph{Extra questions:} Are you sure that completeness is necessary?
+  \uses{thm:bolognese_exists_mem_dual_eval_ne}
+  \leanok
+  See the proof of Theorem~\ref{thm:banach_exists_mem_dual_eval_ne_zero}.
+  \emph{Extra questions:} Are you sure that completeness is necessary?
 \end{proof}
 
 \section{Bolognese Spaces}
 
 \begin{definition}\label{def:bolognese}
-\lean{Bolognese}
-\leanok
-A topological vector space is Bolognese if the convex open
-sets are a base for the topology: for every open set $U$ around a point, there is a convex open set
-$C$ containing that point such that $C\subseteq U$.
+  \lean{Bolognese}
+  \leanok
+  A topological vector space is Bolognese if the convex open sets are a base for the topology:
+  for every open set $U$ around a point, there is a convex open set $C$ containing that point
+  such that $C\subseteq U$.
 \end{definition}
 
-The above definition is \emph{almost identical} to the definition of \href{https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Algebra/Module/LocallyConvex.html#LocallyConvexSpace}{Locally Convex Space} of Mathlib.
+The above definition is \emph{almost identical} to the definition of
+\href{https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Algebra/Module/LocallyConvex.html#LocallyConvexSpace}{Locally Convex Space}
+of Mathlib.
 
-\begin{theorem}\label{thm:bolognese_iff_lc} A topological vector space is Bolognese if and only if
-it is Locally Convex.
-\lean{bolognese_iff_lc}
-\uses{def:bolognese}
-\leanok
+\begin{theorem}\label{thm:bolognese_iff_lc}
+  \lean{bolognese_iff_lc}
+  \uses{def:bolognese}
+  \leanok
+  A topological vector space is Bolognese if and only if it is Locally Convex.
 \end{theorem}
+
 \begin{proof}
-\leanok
-The proof consists in unfolding the definition of a basis of a topological space, using that when $V$ is a topological vector space (so, addition and scalar multiplications are continuous), there is a basis of the neighborhoods of $0$ made of open, absolutely convex spaces (this is in Mathlib).
+  \leanok
+  The proof consists in unfolding the definition of a basis of a topological space, using that
+  when $V$ is a topological vector space (so, addition and scalar multiplications are continuous),
+  there is a basis of the neighborhoods of $0$ made of open, absolutely convex spaces (this is
+  in Mathlib).
 \end{proof}
 
-\begin{theorem}\label{thm:Bolognese_of_Banach} Every Banach space is Bolognese.
-\lean{bolognese_of_banach}
-\uses{def:bolognese}
-\leanok
+\begin{theorem}\label{thm:Bolognese_of_Banach}
+  \lean{bolognese_of_banach}
+  \uses{def:bolognese}
+  \leanok
+  Every Banach space is Bolognese.
 \end{theorem}
+
 \begin{proof}
-\leanok
-\uses{thm:bolognese_iff_lc}
-Since Banach spaces are locally convex, this follows from Theorem~\ref{thm:bolognese_iff_lc}. On the other hand, completeness is probably useless: try to generalise.
+  \uses{thm:bolognese_iff_lc}
+  \leanok
+  Since Banach spaces are locally convex, this follows from Theorem~\ref{thm:bolognese_iff_lc}.
+  On the other hand, completeness is probably useless: try to generalise.
 \end{proof}
 
-\begin{theorem}\label{thm:Lp_bolognese_of_p_ge_1} For every $1\le p$ the space $L^p([0,1])$
-\textup{(}where $[0,1]$ is endowed with the restriction of the Lebesgue measure\textup{)} is Bolognese.
-\lean{Lp_bolognese}
-\uses{def:bolognese}
-\leanok
+\begin{theorem}\label{thm:Lp_bolognese_of_p_ge_1}
+  \lean{Lp_bolognese}
+  \uses{def:bolognese}
+  \leanok
+  For every $1\le p$ the space $L^p([0,1])$ \textup{(}where $[0,1]$ is endowed with the
+  restriction of the Lebesgue measure\textup{)} is Bolognese.
 \end{theorem}
+
 \begin{proof}
-\leanok
-All the ingredients are in Mathlib: the only ``problem'' is how to state the theorem, namely how to speak about $L^p([0,1])$.
+  \leanok
+  All the ingredients are in Mathlib: the only ``problem'' is how to state the theorem, namely
+  how to speak about $L^p([0,1])$.
 \end{proof}
 
-Finally, we see that Theorem~\ref{thm:banach_exists_mem_dual_eval_ne} was a special case of a more
-general result:
+Finally, we see that Theorem~\ref{thm:banach_exists_mem_dual_eval_ne} was a special case of a
+more general result:
+
 \begin{theorem}\label{thm:bolognese_exists_mem_dual_eval_ne}
-Let $V$ be a \emph{Hausdorff} Bolognese space and let $v\neq w \in V$ be distinct elements of $V$. There is a
-$\varphi \in V^*$ such that $\varphi(v) \neq \varphi(w)$.
-\lean{separates_dual_of_bolognese}
-\uses{def:bolognese}
-\leanok
+  \lean{separates_dual_of_bolognese}
+  \uses{def:bolognese}
+  \leanok
+  Let $V$ be a \emph{Hausdorff} Bolognese space and let $v\neq w \in V$ be distinct elements
+  of $V$. There is a $\varphi \in V^*$ such that $\varphi(v) \neq \varphi(w)$.
 \end{theorem}
+
 \begin{proof}
-\leanok
-Once more, the proof is basically a matter of finding the right formulation and right statement in Mathlib. Observe (\emph{i.~e.}: try!) that you can assume T1 instead of Hausdorff, if you so wish.
+  \leanok
+  Once more, the proof is basically a matter of finding the right formulation and right statement
+  in Mathlib. Observe (\emph{i.~e.}: try!) that you can assume T1 instead of Hausdorff, if you
+  so wish.
 \end{proof}
 
 \section{Non-Bolognese Spaces}
 
 It comes the question of understanding whether every space is Bolognese and, if not, to produce
 examples of non-Bolognese ones.
-\begin{theorem}[{Tychonoff (1935), see~\cite{Tyc35}}]\label{thm:lp_not_bolognese}
-\lean{lp_not_bolognese}
-\uses{def:bolognese}
-\leanok
-For every $0<p<1$,
-the space $\ell^{p}$ of sequences $(x_n)_{n\in\mathbb{N}}$ of real numbers such that
-$\sum_{n\geq 0}\lvert x_n\rvert ^p < \infty$ is not Bolognese.
-\end{theorem}
-\begin{proof}
-\leanok
-Arguing by contradiction, suppose that the unit ball $\BB{1}\subseteq \ell^p$ contains a convex open $0 \ni U\subseteq \BB{1}$: then $U$ contains a ball $\BB{\varepsilon}$ for some $\varepsilon$.
 
-For each $1\le i\le \infty$, let $x_i=(\varepsilon\delta_{i,j})_{j}$ be the vector whose coordinates are $0$ at all $j\ne i$ and whose $i$-th coordinate is $\varepsilon$: clearly, $x_i\in \BB{\varepsilon}\subseteq \ell^p$. Consider now, for each $N\in\NN$, the vector
-\[
-y_N=\sum_{i=1}^N \frac{1}{C_N\cdot i^{1/p}}x_i=\bigr(0,\dots,\frac{\varepsilon}{C_Ni^{1/p}}\bigl)
-\]
-where $C_N=\sum_{i=1}^N i^{1/p}$. Clearly all $y_N$ are (finite) linear combinations of the $x_i$'s, so they all belong to the convex set $U\subseteq \BB{1}$. On the other hand,
-\[
-\Vert y_N\Vert=\sqrt[p]{\left(\sum_{i=1}^N \frac{\varepsilon}{C_N\cdot i^{1/p}}\right)^p}=
-\sqrt[p]{\sum_{i=1}^N \lvert(\frac{\varepsilon^p}{C_N^p\cdot i}\rvert)}=\frac{\varepsilon}{C_N}\sqrt[p]{\sum_{i=1}^N \frac{1}{i}}.
-\]
-Now, since
-\[
-\lim_{N\to+\infty}\frac{1}{\sum _{i=1}^N \sqrt[p]{i}}\sqrt[p]{\sum_{i=1}^N \frac{1}{i}}=
-\lim_{N\to+\infty}\frac{1}{\sum _{i=1}^N \sqrt[p]{i}}\sqrt[p]{\sum_{i=1}^N \frac{1}{i}}=+\infty
-\]
-there exists $N$ such that $\Vert y_N\Vert > 1$, contradicting the assumption that $y_N\in\BB{1}$ for all $N$.
+\begin{theorem}[{Tychonoff (1935), see~\cite{Tyc35}}]\label{thm:lp_not_bolognese}
+  \lean{lp_not_bolognese}
+  \uses{def:bolognese}
+  \leanok
+  For every $0<p<1$, the space $\ell^{p}$ of sequences $(x_n)_{n\in\mathbb{N}}$ of real numbers
+  such that $\sum_{n\geq 0}\lvert x_n\rvert ^p < \infty$ is not Bolognese.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Arguing by contradiction, suppose that the unit ball $\BB{1}\subseteq \ell^p$ contains a convex
+  open $0 \ni U\subseteq \BB{1}$: then $U$ contains a ball $\BB{\varepsilon}$ for some
+  $\varepsilon$.
+
+  For each $1\le i\le \infty$, let $x_i=(\varepsilon\delta_{i,j})_{j}$ be the vector whose
+  coordinates are $0$ at all $j\ne i$ and whose $i$-th coordinate is $\varepsilon$: clearly,
+  $x_i\in \BB{\varepsilon}\subseteq \ell^p$. Consider now, for each $N\in\NN$, the vector
+  \[
+    y_N = \sum_{i=1}^N \frac{1}{C_N\cdot i^{1/p}}x_i
+        = \bigr(0,\dots,\frac{\varepsilon}{C_Ni^{1/p}}\bigl)
+  \]
+  where $C_N=\sum_{i=1}^N i^{1/p}$. Clearly all $y_N$ are (finite) linear combinations of the
+  $x_i$'s, so they all belong to the convex set $U\subseteq \BB{1}$. On the other hand,
+  \[
+    \Vert y_N\Vert = \sqrt[p]{\left(\sum_{i=1}^N \frac{\varepsilon}{C_N\cdot i^{1/p}}\right)^p}
+                   = \sqrt[p]{\sum_{i=1}^N \lvert(\frac{\varepsilon^p}{C_N^p\cdot i}\rvert)}
+                   = \frac{\varepsilon}{C_N}\sqrt[p]{\sum_{i=1}^N \frac{1}{i}}.
+  \]
+  Now, since
+  \[
+    \lim_{N\to+\infty}\frac{1}{\sum _{i=1}^N \sqrt[p]{i}}\sqrt[p]{\sum_{i=1}^N \frac{1}{i}}
+    = \lim_{N\to+\infty}\frac{1}{\sum _{i=1}^N \sqrt[p]{i}}\sqrt[p]{\sum_{i=1}^N \frac{1}{i}}
+    = +\infty
+  \]
+  there exists $N$ such that $\Vert y_N\Vert > 1$, contradicting the assumption that
+  $y_N\in\BB{1}$ for all $N$.
 \end{proof}
 
 Passing from numerical sequences to measurable functions yields other examples:
+
 \begin{theorem}\label{thm:L_p_not_bolognese}
-\lean{L_p_not_bolognese}
-\uses{def:bolognese}
-\leanok
-For every $0<p<1$, the space $L^{p}([0,1])$ of equivalence classes of
-measurable functions $f\colon [0,1]\to\RR$ satisfying
-$\int_0^1\lvert f(x)\rvert ^{p}\mathrm{d}x < \infty$ \textup{(}with respect to the Lebesgue
-measure\textup{)} is not Bolognese.
+  \lean{L_p_not_bolognese}
+  \uses{def:bolognese}
+  \leanok
+  For every $0<p<1$, the space $L^{p}([0,1])$ of equivalence classes of measurable functions
+  $f\colon [0,1]\to\RR$ satisfying $\int_0^1\lvert f(x)\rvert ^{p}\mathrm{d}x < \infty$
+  \textup{(}with respect to the Lebesgue measure\textup{)} is not Bolognese.
 \end{theorem}
+
 \begin{proof}
-\leanok
-Combine Theorem~\ref{thm:Lp_dual_zero} and Theorem~\ref{thm:bolognese_exists_mem_dual_eval_ne}.
-\uses{thm:Lp_dual_zero, thm:bolognese_exists_mem_dual_eval_ne}
+  \uses{thm:Lp_dual_zero, thm:bolognese_exists_mem_dual_eval_ne}
+  \leanok
+  Combine Theorem~\ref{thm:Lp_dual_zero} and Theorem~\ref{thm:bolognese_exists_mem_dual_eval_ne}.
 \end{proof}
 
-The above theorem can be proven directly, but we rather deduce it as a corollary of the following one, combined with Theorem~\ref{thm:bolognese_exists_mem_dual_eval_ne}:
-\begin{theorem}\label{thm:Lp_dual_zero} For every $0<p<1$ the dual space $L^p([0,1])^\ast$ is equal to $0$.
-\lean{Lp_dual_zero}
-\uses{def:bolognese}
-\leanok
-\end{theorem}
-\begin{proof}
-\leanok
-\uses{thm:bolognese_exists_mem_dual_eval_ne}
-For a direct proof, see~\cite{Con25}.
-\end{proof}
+The above theorem can be proven directly, but we rather deduce it as a corollary of the following
+one, combined with Theorem~\ref{thm:bolognese_exists_mem_dual_eval_ne}:
 
+\begin{theorem}\label{thm:Lp_dual_zero}
+  \lean{Lp_dual_zero}
+  \uses{def:bolognese}
+  \leanok
+  For every $0<p<1$ the dual space $L^p([0,1])^\ast$ is equal to $0$.
+\end{theorem}
+
+\begin{proof}
+  \uses{thm:bolognese_exists_mem_dual_eval_ne}
+  \leanok
+  For a direct proof, see~\cite{Con25}.
+\end{proof}
 
 \chapter{Other Non-Bolognese Spaces}
-The results in this chapter are all borrowed from~\cite{Con25} and none of them has been formalised during the workshop.
-\begin{theorem}\label{thm:Lp_mu_metric} Let $(X,\mu)$ be a measure space. For every $0<p$ the space $L^p(\mu)$ is a metric space with metric
-\[
-d(f, g)= \begin{cases}
-    \left(\int_{X}|f-g|^{p} \mathrm{~d} \mu\right)^{1 / p}, & \text { if } p \geq 1 \\ \int_{X}|f-g|^{p} \mathrm{~d} \mu, & \text { if } 0<p<1
+
+The results in this chapter are all borrowed from~\cite{Con25} and none of them has been
+formalised during the workshop.
+
+\begin{theorem}\label{thm:Lp_mu_metric}
+  Let $(X,\mu)$ be a measure space. For every $0<p$ the space $L^p(\mu)$ is a metric space with
+  metric
+  \[
+    d(f, g) = \begin{cases}
+      \left(\int_{X}|f-g|^{p} \mathrm{~d} \mu\right)^{1 / p}, & \text { if } p \geq 1 \\
+      \int_{X}|f-g|^{p} \mathrm{~d} \mu, & \text { if } 0<p<1
     \end{cases}
-\]
+  \]
 \end{theorem}
 
-Can Theorem~\ref{thm:L_p_not_bolognese} be generalised beyond the case $X=[0,1]$? The answer relies on the following
-\begin{theorem}\label{thm:Lp_bolognese_iff} For every $0<p<1$, the space $L^p(\mu)$ is Bolognese if and only if $\mu$ assumes finitely many values.
+Can Theorem~\ref{thm:L_p_not_bolognese} be generalised beyond the case $X=[0,1]$? The answer
+relies on the following
+
+\begin{theorem}\label{thm:Lp_bolognese_iff}
+  For every $0<p<1$, the space $L^p(\mu)$ is Bolognese if and only if $\mu$ assumes finitely
+  many values.
 \end{theorem}
+
 As a corollary of the above result, we obtain a new proof of Theorem~\ref{thm:L_p_not_bolognese}:
-\begin{corollary}\label{cor:L_p_not_bolognese2} The space $L^{p}([0,1])$ of equivalence classes of measurable functions $f\colon [0,1]\to\RR$ satisfying $\int_0^1\lvert f(x)\rvert ^{p}\mathrm{d}x < \infty$ \textup{(}with respect to the Lebesgue measure\textup{)} is not Bolognese.
+
+\begin{corollary}\label{cor:L_p_not_bolognese2}
+  The space $L^{p}([0,1])$ of equivalence classes of measurable functions
+  $f\colon [0,1]\to\RR$ satisfying $\int_0^1\lvert f(x)\rvert ^{p}\mathrm{d}x < \infty$
+  \textup{(}with respect to the Lebesgue measure\textup{)} is not Bolognese.
 \end{corollary}
+
 \begin{proof}
-\uses{thm:Lp_bolognese_iff}
+  \uses{thm:Lp_bolognese_iff}
 \end{proof}
