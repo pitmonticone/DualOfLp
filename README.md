@@ -12,8 +12,10 @@ The main goal is to get your hands dirty with a little bit of Functional Analysi
 * Banach spaces and their duals.
 * $L^p$ and $\ell^p$-spaces.
 
-The main goal is to prove that the (continuous) dual of $L^p([0,1])$ is $0$ for every $0<p<1$: as a warm-up we first prove that $\ell^p$ is not locally convex for such exponents, and then we prove the same result for $L^p([0,1])$.
+We focus on proving that the (continuous) dual of $L^p([0,1])$ is $0$ for every $0<p<1$: as a warm-up we first prove that $\ell^p$ is not locally convex for such exponents, and then we prove the same result for $L^p([0,1])$.
 
 In the final chapter we try to generalise the previous result from the space $[0,1]$ to other spaces.
 
 The blueprint follows [the nice note](https://kconrad.math.uconn.edu/blurbs/analysis/lpspace.pdf) " $L^p$-spaces for $0<p<1$ " by Keith Conrad: I thank him for some exchanges and for his permission to steal this material.
+
+As the main goal of [ItaLean 2025](https://pitmonticone.github.io/ItaLean2025/) was to bridge the gap between formalization and IA, [Aristotle by Harmonic](https://aristotle.harmonic.fun/) was tested on all the material, and succeeded to auto-formalize (with some help from my side) all the material from Chapters 1 and 2.
