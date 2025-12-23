@@ -2,12 +2,12 @@ All vector spaces in this document are over the field $\RR$ of real numbers.
 
 \chapter{Mise en bouche}
 
-\begin{theorem}\label{thm:unique_topology_fd}
+\begin{thm}\label{thm:unique_topology_fd}
   \lean{unique_topology_of_finiteDimensional}
   \leanok
   The usual topology on $\RR^{n}$ is the only Hausdorff topology that makes it a topological
   vector space.
-\end{theorem}
+\end{thm}
 
 \begin{proof}
   \leanok
@@ -19,11 +19,11 @@ All vector spaces in this document are over the field $\RR$ of real numbers.
   Of course, the whole point is to state this in Lean.
 \end{proof}
 
-\begin{theorem}\label{thm:discrete_iff_zero}
+\begin{thm}\label{thm:discrete_iff_zero}
   \lean{discrete_topology_implies_subsingleton}
   \leanok
   The only topological vector space over $\RR$ with the discrete topology is the zero space.
-\end{theorem}
+\end{thm}
 
 \begin{proof}
   \leanok
@@ -40,12 +40,12 @@ to state that a space $V$ is Banach.
 
 \section{Duals of Banach Spaces}
 
-\begin{theorem}\label{thm:banach_exists_mem_dual_eval_ne_zero}
+\begin{thm}\label{thm:banach_exists_mem_dual_eval_ne_zero}
   \lean{nonzero_functional_of_banach}
   \leanok
   If $V$ is a Banach space and $v\neq 0$, then some $\varphi \in V^*$ satisfies
   $\varphi(v) \neq 0$.
-\end{theorem}
+\end{thm}
 
 \begin{proof}
   \leanok
@@ -225,7 +225,7 @@ one, combined with Theorem~\ref{thm:bolognese_exists_mem_dual_eval_ne}:
 The results in this chapter are all borrowed from~\cite{Con25} and none of them has been
 formalised during the workshop.
 
-\begin{theorem}\label{thm:Lp_mu_metric}
+\begin{thm}\label{thm:Lp_mu_metric}
   Let $(X,\mu)$ be a measure space. For every $0<p$ the space $L^p(\mu)$ is a metric space with
   metric
   \[
@@ -234,23 +234,23 @@ formalised during the workshop.
       \int_{X}|f-g|^{p} \mathrm{~d} \mu, & \text { if } 0<p<1
     \end{cases}
   \]
-\end{theorem}
+\end{thm}
 
 Can Theorem~\ref{thm:L_p_not_bolognese} be generalised beyond the case $X=[0,1]$? The answer
 relies on the following
 
-\begin{theorem}\label{thm:Lp_bolognese_iff}
+\begin{thm}\label{thm:Lp_bolognese_iff}
   For every $0<p<1$, the space $L^p(\mu)$ is Bolognese if and only if $\mu$ assumes finitely
   many values.
-\end{theorem}
+\end{thm}
 
 As a corollary of the above result, we obtain a new proof of Theorem~\ref{thm:L_p_not_bolognese}:
 
-\begin{corollary}\label{cor:L_p_not_bolognese2}
+\begin{cor}\label{cor:L_p_not_bolognese2}
   The space $L^{p}([0,1])$ of equivalence classes of measurable functions
   $f\colon [0,1]\to\RR$ satisfying $\int_0^1\lvert f(x)\rvert ^{p}\mathrm{d}x < \infty$
   \textup{(}with respect to the Lebesgue measure\textup{)} is not Bolognese.
-\end{corollary}
+\end{cor}
 
 \begin{proof}
   \uses{thm:Lp_bolognese_iff}
