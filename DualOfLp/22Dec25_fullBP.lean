@@ -1169,7 +1169,7 @@ lemma exists_split_norm_ratio (f : Lp ℝ p ν) (r : ℝ) (hr : 0 ≤ r) (hr1 : 
           ext; simp [Lp.restrict]
 
 /-
-Any continuous linear functional on $L^p$ ($0<p<1$) is bounded by $C \|f\|_p$.
+Any continuous linear functional on $L^p$ ($0< p<1$) is bounded by $C \|f\|_p$.
 -/
 open MeasureTheory ENNReal Set Metric Function Topology
 
@@ -1271,7 +1271,7 @@ theorem Lp_dual_zero (p : ℝ≥0∞) [Fact (0 < p)] [Fact (p < 1)] :
       exact ContinuousLinearMap.ext h_zero
 
 /-
-For every $0<p<1$, the space $L^{p}([0,1])$ is not Bolognese.
+For every $0< p<1$, the space $L^{p}([0,1])$ is not Bolognese.
 -/
 open MeasureTheory ENNReal Set Metric Function Topology
 
