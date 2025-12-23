@@ -18,4 +18,4 @@ In the final chapter we try to generalise the previous result from the space $[0
 
 The blueprint follows [the nice note](https://kconrad.math.uconn.edu/blurbs/analysis/lpspace.pdf) " $L^p$-spaces for $0<p<1$ " by Keith Conrad: I thank him for some exchanges and for his permission to steal this material.
 
-As the main goal of [ItaLean 2025](https://pitmonticone.github.io/ItaLean2025/) was to bridge the gap between formalization and IA, [Aristotle by Harmonic](https://aristotle.harmonic.fun/) was tested on all the material, and succeeded to auto-formalize (with some help from my side) all the material from Chapters 1 and 2.
+As the main goal of [ItaLean 2025](https://pitmonticone.github.io/ItaLean2025/) was to bridge the gap between formalization and AI, [Aristotle by Harmonic](https://aristotle.harmonic.fun/) was tested on all the material, and succeeded to auto-formalize (with some help from my side) all the material from Chapters 1 and 2.
